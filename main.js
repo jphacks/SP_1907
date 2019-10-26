@@ -14,7 +14,7 @@ request_permission = function () {
         DeviceOrientationEvent &&
         DeviceOrientationEvent.requestPermission &&
         typeof DeviceOrientationEvent.requestPermission === 'function'
-    ) {
+        ) {
         DeviceOrientationEvent.requestPermission();
     }
     $("body").html(innerHtml);
@@ -25,6 +25,10 @@ let flag = false;
 window.addEventListener("devicemotion",
     // イベント発生
     function () {
+        if (document.getElementById('camera') == null) {
+            return;
+        }
+        var camera = document.getElementById('camera');
 
         // x軸
         var accelx = event.acceleration.x;
@@ -76,10 +80,6 @@ window.addEventListener("devicemotion",
         // var rotz = event.rotationRate.alpha; //z方向
         // var rotx = event.rotationRate.beta; //x方向
         // var roty = event.rotationRate.gamma; // y方向
-        if (document.getElementById('camera') == null) {
-            return;
-        }
-        var camera = document.getElementById('camera');
 
         var position = camera.getAttribute('position');
         // var rotation = camera.getAttribute('rotation');
