@@ -1,5 +1,15 @@
 let innerHtml = '<a-scene><a-assets>    <a-asset-item id="model" src="Models/syachi.glb"></a-asset-item></a-assets><a-entity id="syachi" gltf-model="#model" animation-mixer position="0 0 2" rotation="0 140 -10"    scale="1 1 1" visible="true"></a-entity><a-entity id="camera" camera position="0 0 0" look-controls></a-entity></a-scene>';
 
+
+let os = navigator.platform;                // OS名の取得
+let osNum;
+if (os === "iPhone" || os === "iPad" || os === "iPod") {     // iOSなら
+    osNum = -1;
+}else{
+    osNum = 1;
+}
+
+
 // $(window).click(request_permission());
 
 request_permission = function () {
@@ -14,13 +24,14 @@ request_permission = function () {
         DeviceOrientationEvent &&
         DeviceOrientationEvent.requestPermission &&
         typeof DeviceOrientationEvent.requestPermission === 'function'
-        ) {
+    ) {
         DeviceOrientationEvent.requestPermission();
     }
     $("body").html(innerHtml);
 }
 
 let flag = false;
+
 
 window.addEventListener("devicemotion",
     // イベント発生
@@ -31,11 +42,11 @@ window.addEventListener("devicemotion",
         var camera = document.getElementById('camera');
 
         // x軸
-        var accelx = event.acceleration.x;
+        var accelx = event.acceleration.x * osNum;
         // y軸
-        var accely = event.acceleration.y;
+        var accely = event.acceleration.y * osNum;
         // z軸
-        var accelz = event.acceleration.z;
+        var accelz = event.acceleration.z * osNum;
 
         let sx = 0;
         let sy = 0;
