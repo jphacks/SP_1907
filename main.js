@@ -72,3 +72,7 @@ if(!isGyro){
 		}
 	},300);
 }
+
+function setCanvas() {
+    return;
+}
