@@ -24,12 +24,48 @@ request_permission = function () {
 window.addEventListener("devicemotion",
     // イベント発生
     function () {
+
         // x軸
         var posx = event.acceleration.x;
         // y軸
         var posy = event.acceleration.y;
         // z軸
         var posz = event.acceleration.z;
+
+        let pos = [posx, posy, posz];
+        let posSpeed = [sx, sy, sz];
+
+        let filterCoefficient = 0.9;
+        let lowpassValue = 0;
+        let highpassValue = 0;
+
+        // 時間差分
+        let timeSpan = 0.1;
+        // ひとつ前の加速度
+        let oldAccel = 0;
+        //　加速度から算出した速度
+        let speed = 0;
+        // ひとつ前の速度
+        let oldSpeed = 0;
+        // 速度から算出した変位
+        let difference = 0;
+
+        for (let i = 0; i < pos.length; i++) {
+
+            // ローパスフィルター(現在の値 = 係数 * ひとつ前の値 ＋ (1 - 係数) * センサの値)
+            lowpassValue = lowpassValue * filterCoefficient + pos[i] * (1 - filterCoefficient);
+            // ハイパスフィルター(センサの値 - ローパスフィルターの値)
+            highpassValue = pos[i] - lowpassValue;
+
+            // 速度計算(加速度を台形積分する)
+            posSpeed[i] = ((highpassValue + oldAccel) * timeSpan) / 2 + posSpeed[i];
+            oldAccel = highpassValue;
+
+            // 変位計算(速度を台形積分する)
+            difference = ((posSpeed[i] + oldSpeed) * timeSpan) / 2 + difference;
+            oldSpeed = posSpeed[i];
+
+        }
 
         var rotz = event.rotationRate.alpha; //z方向
         var rotx = event.rotationRate.beta; //x方向
@@ -40,12 +76,13 @@ window.addEventListener("devicemotion",
         var position = camera.getAttribute('position');
         // var rotation = camera.getAttribute('rotation');
 
-        position.x += posx;
-        position.z += posz;
+        position.x += posSpeed[1];
+        position.y += posSpeed[2];
+        position.z += posSpeed[3];
 
-        rotation.x = rotx;
-        rotation.y = roty;
-        rotation.z = rotz;
+        // rotation.x = rotx;
+        // rotation.y = roty;
+        // rotation.z = rotz;
 
         camera.setAttribute('position', position);
         // camera.setAttribute('rotation', rotation);
