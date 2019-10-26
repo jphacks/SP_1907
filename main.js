@@ -36,9 +36,6 @@ request_permission = function () {
     // $("#container").html(innerHtml);
     $("a-scene").html(innerHtml);
 
-    while (document.getElementById('touchDet') == null) {
-    }
-    definePlane();
 }
 
 let flag = false;
