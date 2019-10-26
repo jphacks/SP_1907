@@ -45,8 +45,6 @@ request_permission = function () {
 
 let test = function (posx, posy) {
     var camera = document.getElementById('camera');
-
-    camera
     var position = camera.getAttribute('position');
 
     position.x += posx;
