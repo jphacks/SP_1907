@@ -135,7 +135,7 @@ window.addEventListener("devicemotion",
 // }
 
 // 平面規定処理--------------
-$("#touchDet").onReady(function (e) {
+$("#touchDet").ready(function (e) {
     touchDetector = document.getElementById('touchDet');
 
     testCube = document.getElementById('cube');
