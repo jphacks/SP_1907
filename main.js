@@ -1,4 +1,5 @@
 window.onclick = function(){
+    alert("OK");
     if (
       DeviceMotionEvent &&
       DeviceMotionEvent.requestPermission &&
