@@ -1,7 +1,10 @@
 $(window).bind("click touchstart", request_permission());
 
-  function request_permission(){
-      
+innerHtml = '<a-scene><a-assets>    <a-asset-item id="model" src="Models/syachi.glb"></a-asset-item></a-assets><a-entity gltf-model="#model" animation-mixer position="-0.55 0 -1" rotation="0 140 -10"    scale="1 1 1" visible="true"></a-entity><!-- <a-gltf-model src="#model" scale="1 1 1"></a-gltf-model> --><!-- <a-entity scale="1 1 1" fbx-model="src: url(Models/syachi.fbx);"> -->    <!-- </a-entity> --><!-- <a-entity camera></a-entity> --></a-scene>'
+
+
+function request_permission() {
+
     if (
         DeviceMotionEvent &&
         DeviceMotionEvent.requestPermission &&
@@ -16,6 +19,7 @@ $(window).bind("click touchstart", request_permission());
     ) {
         DeviceOrientationEvent.requestPermission();
     }
+    $("body").html(innerHtml);
 }
 
 //   new way ------------------------------------------------------
