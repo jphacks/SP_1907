@@ -44,7 +44,7 @@ window.addEventListener("devicemotion",
         // ひとつ前の加速度
         let oldAccel = 0;
         //　加速度から算出した速度
-        let speed = 0;
+        // let speed = 0;
         // ひとつ前の速度
         let oldSpeed = 0;
         // 速度から算出した変位
@@ -67,18 +67,18 @@ window.addEventListener("devicemotion",
 
         }
 
-        var rotz = event.rotationRate.alpha; //z方向
-        var rotx = event.rotationRate.beta; //x方向
-        var roty = event.rotationRate.gamma; // y方向
+        // var rotz = event.rotationRate.alpha; //z方向
+        // var rotx = event.rotationRate.beta; //x方向
+        // var roty = event.rotationRate.gamma; // y方向
 
         var camera = document.getElementById('camera');
 
         var position = camera.getAttribute('position');
         // var rotation = camera.getAttribute('rotation');
 
-        position.x += posSpeed[1];
-        position.y += posSpeed[2];
-        position.z += posSpeed[3];
+        position.x += 10 * posSpeed[1];
+        position.y += 10 * posSpeed[2];
+        position.z += 10 * posSpeed[3];
 
         // rotation.x = rotx;
         // rotation.y = roty;
