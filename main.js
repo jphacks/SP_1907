@@ -1,10 +1,10 @@
 let innerHtml = '<a-scene id="touchDet"><a-assets>'
     + '<a-asset-item id="model" src="Models/Pinga.glb"></a-asset-item></a-assets>'
-    +'<a-entity id="syachi" gltf-model="#model" animation-mixer position="0 0 2" rotation="0 0 0"'
-    +'scale="1 1 1" visible="true"></a-entity>'
-    +'<a-entity id="camera" camera position="0 0 0" look-controls></a-entity>'
-    +'<a-box id="cube" scale="1 1 1" position="0 0 -3" color="red"></a-box>';
-    +'</a-scene>'
+    + '<a-entity id="syachi" gltf-model="#model" animation-mixer position="0 0 2" rotation="0 0 0"'
+    + 'scale="1 1 1" visible="true"></a-entity>'
+    + '<a-entity id="camera" camera position="0 0 0" look-controls></a-entity>'
+    + '<a-box id="cube" scale="1 1 1" position="0 0 -3" color="red"></a-box>';
++'</a-scene>'
 
 
 let os = navigator.platform;                // OS名の取得
@@ -33,7 +33,12 @@ request_permission = function () {
     ) {
         DeviceOrientationEvent.requestPermission();
     }
-    $("#container").html(innerHtml);
+    // $("#container").html(innerHtml);
+    $("body").html(innerHtml);
+
+    while (document.getElementById('touchDet') == null) {
+        definePlane();
+    }
 }
 
 let flag = false;
@@ -131,53 +136,54 @@ window.addEventListener("devicemotion",
 // }
 
 // 平面規定処理--------------
+let definePlane = function () {
+    touchDetector = document.getElementById('touchDet');
 
-let touchDetector = document.getElementById('touchDet');
+    testCube = document.getElementById('cube');
+    cubeScale = testCube.getAttribute('scale');
+}
 // base
-let beseDistance = 0 ;
-let baseCubeX = 0 ;
-let baseCubeY = 0 ;
-
-let testCube = document.getElementById('cube');
-let cubeScale = testCube.getAttribute('scale');
+let beseDistance = 0;
+let baseCubeX = 0;
+let baseCubeY = 0;
 
 // touchmove
-touchDetector.ontouchmove = function ( event ) {
+touchDetector.ontouchmove = function (event) {
     alert('OK');
-	event.preventDefault() ;
+    event.preventDefault();
 
-	var touches = event.changedTouches ;
+    var touches = event.changedTouches;
 
-	if ( touches.length > 1 ) {
-		var x1 = touches[0].pageX ;
-		var y1 = touches[0].pageY ;
+    if (touches.length > 1) {
+        var x1 = touches[0].pageX;
+        var y1 = touches[0].pageY;
 
-		var x2 = touches[1].pageX ;
-		var y2 = touches[1].pageY ;
+        var x2 = touches[1].pageX;
+        var y2 = touches[1].pageY;
 
-		var distance = Math.sqrt( Math.pow( x2-x1, 2 ) + Math.pow( y2-y1, 2 ) ) ;
+        var distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 
-		clearTimeout( timeoutId ) ;
+        clearTimeout(timeoutId);
 
-		if ( beseDistance && baseCubeX && baseCubeY ) {
-			var scale = distance / beseDistance ;
+        if (beseDistance && baseCubeX && baseCubeY) {
+            var scale = distance / beseDistance;
 
-			if ( scale && scale != Infinity ) {
-				cubeScale.x = baseCubeX * scale ;
-				cubeScale.y = baseCubeY * scale ;
-			}
+            if (scale && scale != Infinity) {
+                cubeScale.x = baseCubeX * scale;
+                cubeScale.y = baseCubeY * scale;
+            }
 
-			timeoutId = setTimeout( function () {
-				beseDistance = 0 ;
-				baseCubeX = 0 ;
-				baseCubeY = 0 ;
-			}, 100 ) ;
+            timeoutId = setTimeout(function () {
+                beseDistance = 0;
+                baseCubeX = 0;
+                baseCubeY = 0;
+            }, 100);
 
-		} else {
-			beseDistance = distance ;
-			baseCubeX = cubeScale.x;
-			baseCubeY = cubeScale.y;
+        } else {
+            beseDistance = distance;
+            baseCubeX = cubeScale.x;
+            baseCubeY = cubeScale.y;
 
-		}
-	}
+        }
+    }
 }
