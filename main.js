@@ -71,7 +71,7 @@ window.addEventListener("devicemotion",
             oldSpeed = speed[i];
 
         }
-        $('#speed').text(speed);
+        $('#speed').text(`speed = ${speed}`);
 
         // var rotz = event.rotationRate.alpha; //z方向
         // var rotx = event.rotationRate.beta; //x方向
@@ -88,7 +88,7 @@ window.addEventListener("devicemotion",
         position.y += speed[2];
         position.z += speed[3];
 
-        $('#pos').text(position);
+        $('#pos').text(`position = ${position}`);
 
         // rotation.x = rotx;
         // rotation.y = roty;
