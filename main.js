@@ -71,7 +71,7 @@ window.addEventListener("devicemotion",
             oldSpeed = speed[i];
 
         }
-        $('#speed').text(`speed\n${speed[0].toFixed(2)}\n${speed[1].toFixed(2)}\n${speed[2].toFixed(2)}`);
+        $('#speed').html(`<p>speed</p><p>${speed[0].toFixed(2)}</p><p>${speed[1].toFixed(2)}</p><p>${speed[2].toFixed(2)}</p>`);
 
         // var rotz = event.rotationRate.alpha; //z方向
         // var rotx = event.rotationRate.beta; //x方向
