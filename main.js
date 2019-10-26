@@ -21,10 +21,10 @@ request_permission = function () {
 }
 
 
-window.addEventListener("devicemotion", accelerationEvent);
+window.addEventListener("devicemotion", 
 
 // イベント発生
-function accelerationEvent(event) {
+function() {
     // x軸
     var x = event.acceleration.x;
     // y軸
@@ -42,4 +42,4 @@ function accelerationEvent(event) {
         position.z += Math.sin((rotation.y - 90) * Math.PI / 180) * z;
         camera.setAttribute('position', position);
     }
-}
+});
