@@ -3,7 +3,6 @@ let innerHtml = '<a-scene><a-assets>    <a-asset-item id="model" src="Models/sya
 // $(window).click(request_permission());
 
 request_permission = function() {
-
     if (
         DeviceMotionEvent &&
         DeviceMotionEvent.requestPermission &&
