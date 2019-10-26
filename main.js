@@ -31,9 +31,9 @@ window.addEventListener("devicemotion",
         // z軸
         var posz = event.acceleration.z;
 
-        var rotz = evt.rotationRate.alpha; //z方向
-        var rotx = evt.rotationRate.beta; //x方向
-        var roty = evt.rotationRate.gamma; // y方向
+        var rotz = event.rotationRate.alpha; //z方向
+        var rotx = event.rotationRate.beta; //x方向
+        var roty = event.rotationRate.gamma; // y方向
 
         var camera = document.getElementById('camera');
 
