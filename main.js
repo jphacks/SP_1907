@@ -1,10 +1,9 @@
-let innerHtml = '<a-scene id="touchDet" ontouchmove="alert(123)"><a-assets>'
+let innerHtml = '<a-assets>'
     + '<a-asset-item id="model" src="Models/Pinga.glb"></a-asset-item></a-assets>'
     + '<a-entity id="syachi" gltf-model="#model" animation-mixer position="0 0 2" rotation="0 0 0"'
     + 'scale="1 1 1" visible="true"></a-entity>'
     + '<a-entity id="camera" camera position="0 0 0"></a-entity>'
     + '<a-box id="cube" scale="1 1 1" position="0 0 -3" color="red"></a-box>';
-+'</a-scene>'
 
 
 let os = navigator.platform;                // OS名の取得
@@ -34,7 +33,7 @@ request_permission = function () {
         DeviceOrientationEvent.requestPermission();
     }
     // $("#container").html(innerHtml);
-    $("body").html(innerHtml);
+    $("a-scene").html(innerHtml);
 
     while (document.getElementById('touchDet') == null) {
         definePlane();
