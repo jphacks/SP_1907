@@ -54,6 +54,7 @@ window.addEventListener("devicemotion",
 
         let accel = [accelx, accely, accelz];
         let speed = [sx, sy, sz];
+        let difference = [0, 0, 0];
 
         let filterCoefficient = 0.3;
         let lowpassValue = 0;
@@ -68,7 +69,7 @@ window.addEventListener("devicemotion",
         // ひとつ前の速度
         let oldSpeed = 0;
         // 速度から算出した変位
-        let difference = 0;
+        // let difference = 0;
 
         for (let i = 0; i < accel.length; i++) {
 
@@ -82,7 +83,7 @@ window.addEventListener("devicemotion",
             oldAccel = highpassValue;
 
             // 変位計算(速度を台形積分する)
-            difference = ((speed[i] + oldSpeed) * timeSpan) / 2 + difference;
+            difference[i] = ((speed[i] + oldSpeed) * timeSpan) / 2 + difference;
             oldSpeed = speed[i];
 
         }
@@ -99,7 +100,8 @@ window.addEventListener("devicemotion",
         // position.y += 10 * speed[1];
         position.x += 0;
         position.y += 0;
-        position.z += 10 * -speed[2].toFixed(1);
+        // position.z += 10 * -speed[2].toFixed(1);
+        position.z += difference;
 
         $('#pos').text(`position = ${position}`);
 
