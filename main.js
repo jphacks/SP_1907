@@ -21,24 +21,36 @@ request_permission = function () {
 }
 
 
-window.addEventListener("devicemotion", 
+window.addEventListener("devicemotion",
+    // イベント発生
+    function () {
+        alert("OK");
+        // x軸
+        var x = event.acceleration.x;
+        // y軸
+        var y = event.acceleration.y;
+        // z軸
+        var z = event.acceleration.z;
 
-// イベント発生
-function() {
-    // x軸
-    var x = event.acceleration.x;
-    // y軸
-    var y = event.acceleration.y;
-    // z軸
-    var z = event.acceleration.z;
+        var camera = document.getElementById('camera');
 
-    var camera = document.getElementById('camera');
-
-    camera
+        camera
         var position = camera.getAttribute('position');
         var rotation = camera.getAttribute('rotation');
 
-        position.x +=  x;
-        position.z +=  z;
+        position.x += x;
+        position.z += z;
         camera.setAttribute('position', position);
-});
+    });
+
+// let test = function (posx, posy) {
+//     var camera = document.getElementById('camera');
+
+//     camera
+//     var position = camera.getAttribute('position');
+
+//     position.x += posx;
+//     position.z += posy;
+//     camera.setAttribute('position', position);
+
+// }
