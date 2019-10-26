@@ -1,4 +1,4 @@
-let innerHtml = '<a-scene id="touchDet"><a-assets>'
+let innerHtml = '<a-scene id="touchDet" ontouchmove="alert(123)"><a-assets>'
     + '<a-asset-item id="model" src="Models/Pinga.glb"></a-asset-item></a-assets>'
     + '<a-entity id="syachi" gltf-model="#model" animation-mixer position="0 0 2" rotation="0 0 0"'
     + 'scale="1 1 1" visible="true"></a-entity>'
