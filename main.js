@@ -1,4 +1,4 @@
-window.onclick = function(){
+$(window).bind("click touchstart", function(){
     alert("OK");
     if (
       DeviceMotionEvent &&
@@ -14,7 +14,7 @@ window.onclick = function(){
     ) {
       DeviceOrientationEvent.requestPermission();
     }
-  }
+  })
 
 //   new way ------------------------------------------------------
 
