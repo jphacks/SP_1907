@@ -81,9 +81,9 @@ window.addEventListener("devicemotion",
         var position = camera.getAttribute('position');
         // var rotation = camera.getAttribute('rotation');
 
-        position.x += posSpeed[1];
-        position.y += posSpeed[2];
-        position.z += posSpeed[3];
+        position.x += 10 * posSpeed[1];
+        position.y += 10 * posSpeed[2];
+        position.z += 10 * posSpeed[3];
 
         // rotation.x = rotx;
         // rotation.y = roty;
