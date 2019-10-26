@@ -4,9 +4,9 @@ let innerHtml = '<a-scene><a-assets>    <a-asset-item id="model" src="Models/sya
 let os = navigator.platform;                // OS名の取得
 let osNum;
 if (os === "iPhone" || os === "iPad" || os === "iPod") {     // iOSなら
-    osNum = -1;
-}else{
     osNum = 1;
+}else{
+    osNum = -1;
 }
 
 
