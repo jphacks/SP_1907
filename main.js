@@ -1,4 +1,4 @@
-let innerHtml = '<a-scene><a-assets>'
+let innerHtml = '<a-scene id="touchDet"><a-assets>'
     + '<a-asset-item id="model" src="Models/Pinga.glb"></a-asset-item></a-assets>'
     +'<a-entity id="syachi" gltf-model="#model" animation-mixer position="0 0 2" rotation="0 0 0"'
     +'scale="1 1 1" visible="true"></a-entity>'
@@ -132,6 +132,7 @@ window.addEventListener("devicemotion",
 
 // 平面規定処理--------------
 
+let touchDetector = document.getElementById('touchDet');
 // base
 let beseDistance = 0 ;
 let baseCubeX = 0 ;
@@ -141,7 +142,7 @@ let testCube = document.getElementById('cube');
 let cubeScale = testCube.getAttribute('scale');
 
 // touchmove
-window.ontouchmove = function ( event ) {
+touchDetector.ontouchmove = function ( event ) {
     alert('OK');
 	event.preventDefault() ;
 
