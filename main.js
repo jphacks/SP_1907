@@ -37,8 +37,8 @@ request_permission = function () {
     $("a-scene").html(innerHtml);
 
     while (document.getElementById('touchDet') == null) {
-        definePlane();
     }
+    definePlane();
 }
 
 let flag = false;
