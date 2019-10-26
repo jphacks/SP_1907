@@ -14,9 +14,16 @@
 
 <body style="margin:0px; overflow:hidden;">
     <a-scene>
+        <a-assets>
+            <a-asset-item id="model" src="Models/syachi.gltf"></a-asset-item>
+        </a-assets>
+
         <a-box position="5 0 -7" rotation="0 45 0" color="#4CC3D9"></a-box>
         <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
         <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+        <a-entity gltf-model="#model" play-all-model-animations="" position="-0.55 0 -0.5" rotation="0 140 -10"
+            scale="4 4 4" visible="true">
+        </a-entity>
     </a-scene>
 </body>
 
