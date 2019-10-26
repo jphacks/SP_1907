@@ -56,7 +56,7 @@ window.addEventListener("devicemotion",
         let speed = [sx, sy, sz];
         let difference = [0, 0, 0];
 
-        let filterCoefficient = 0.3;
+        let filterCoefficient = 0.9;
         let lowpassValue = 0;
         let highpassValue = 0;
 
