@@ -61,7 +61,7 @@ window.addEventListener("devicemotion",
         let highpassValue = 0;
 
         // 時間差分
-        let timeSpan = 0.1;
+        let timeSpan = 0.01;
         // ひとつ前の加速度
         let oldAccel = 0;
         //　加速度から算出した速度
@@ -100,8 +100,8 @@ window.addEventListener("devicemotion",
         // position.y += 10 * speed[1];
         position.x += 0;
         position.y += 0;
-        // position.z += 10 * -speed[2].toFixed(1);
-        position.z += difference[2];
+        position.z += 10 * -speed[2].toFixed(1);
+        // position.z += difference[2];
 
         $('#pos').text(`position = ${position}`);
 
