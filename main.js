@@ -1,20 +1,22 @@
-$(window).bind("click touchstart", function(){
-    alert("OK");
+$(window).bind("click touchstart", request_permission());
+
+  function request_permission(){
+      
     if (
-      DeviceMotionEvent &&
-      DeviceMotionEvent.requestPermission &&
-      typeof DeviceMotionEvent.requestPermission === 'function'
+        DeviceMotionEvent &&
+        DeviceMotionEvent.requestPermission &&
+        typeof DeviceMotionEvent.requestPermission === 'function'
     ) {
-      DeviceMotionEvent.requestPermission();
+        DeviceMotionEvent.requestPermission();
     }
     if (
-      DeviceOrientationEvent &&
-      DeviceOrientationEvent.requestPermission &&
-      typeof DeviceOrientationEvent.requestPermission === 'function'
+        DeviceOrientationEvent &&
+        DeviceOrientationEvent.requestPermission &&
+        typeof DeviceOrientationEvent.requestPermission === 'function'
     ) {
-      DeviceOrientationEvent.requestPermission();
+        DeviceOrientationEvent.requestPermission();
     }
-  })
+}
 
 //   new way ------------------------------------------------------
 
