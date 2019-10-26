@@ -42,11 +42,11 @@ window.addEventListener("devicemotion",
         var camera = document.getElementById('camera');
 
         // x軸
-        var accelx = event.acceleration.x * osNum;
+        var accelx = event.acceleration.x.toFixed(3) * osNum;
         // y軸
-        var accely = event.acceleration.y * osNum;
+        var accely = event.acceleration.y.toFixed(3) * osNum;
         // z軸
-        var accelz = event.acceleration.z * osNum;
+        var accelz = event.acceleration.z.toFixed(3) * osNum;
 
         let sx = 0;
         let sy = 0;
