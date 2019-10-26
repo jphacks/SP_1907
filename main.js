@@ -32,6 +32,10 @@ window.addEventListener("devicemotion",
         // z軸
         var posz = event.acceleration.z;
 
+        let sx = 0;
+        let sy = 0;
+        let sz = 0;
+
         let pos = [posx, posy, posz];
         let posSpeed = [sx, sy, sz];
 
