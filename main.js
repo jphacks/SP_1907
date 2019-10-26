@@ -71,11 +71,14 @@ window.addEventListener("devicemotion",
             oldSpeed = speed[i];
 
         }
+        $('#speed').text(speed);
 
         // var rotz = event.rotationRate.alpha; //z方向
         // var rotx = event.rotationRate.beta; //x方向
         // var roty = event.rotationRate.gamma; // y方向
-
+        if (document.getElementById('camera') == null) {
+            return;
+        }
         var camera = document.getElementById('camera');
 
         var position = camera.getAttribute('position');
@@ -84,6 +87,8 @@ window.addEventListener("devicemotion",
         position.x += speed[1];
         position.y += speed[2];
         position.z += speed[3];
+
+        $('#pos').text(position);
 
         // rotation.x = rotx;
         // rotation.y = roty;
