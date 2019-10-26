@@ -1,4 +1,4 @@
-let innerHtml = '<a-scene><a-assets>    <a-asset-item id="model" src="Models/syachi.glb"></a-asset-item></a-assets><a-entity gltf-model="#model" animation-mixer position="-0.55 0 -1" rotation="0 140 -10"    scale="1 1 1" visible="true"></a-entity><a-entity id="camera" camera position="0 0 0" look-controls></a-entity></a-scene>';
+let innerHtml = '<a-scene><a-assets>    <a-asset-item id="model" src="Models/syachi.glb"></a-asset-item></a-assets><a-entity gltf-model="#model" animation-mixer position="0 0 2" rotation="0 140 -10"    scale="1 1 1" visible="true"></a-entity><a-entity id="camera" camera position="0 0 0" look-controls></a-entity></a-scene>';
 
 // $(window).click(request_permission());
 
@@ -86,6 +86,8 @@ window.addEventListener("devicemotion",
 
         // position.x += 10 * -speed[0];
         // position.y += 10 * speed[1];
+        position.x += 0;
+        position.y += 0;
         position.z += 10 * -speed[2];
 
         $('#pos').text(`position = ${position}`);
