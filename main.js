@@ -1,4 +1,4 @@
-let innerHtml = '<a-scene><a-assets>    <a-asset-item id="model" src="Models/syachi.glb"></a-asset-item></a-assets><a-entity gltf-model="#model" animation-mixer position="-0.55 0 -1" rotation="0 140 -10"    scale="1 1 1" visible="true"></a-entity><a-entity id="camera" camera position="0 0 0"></a-entity></a-scene>';
+let innerHtml = '<a-scene><a-assets>    <a-asset-item id="model" src="Models/syachi.glb"></a-asset-item></a-assets><a-entity gltf-model="#model" animation-mixer position="-0.55 0 -1" rotation="0 140 -10"    scale="1 1 1" visible="true"></a-entity><a-entity id="camera" camera position="0 0 0" rotation="0 0 0"></a-entity></a-scene>';
 
 // $(window).click(request_permission());
 
@@ -21,34 +21,42 @@ request_permission = function () {
 }
 
 
-// window.addEventListener("devicemotion",
-//     // イベント発生
-//     function () {
-//         alert("OK");
-//         // x軸
-//         var x = event.acceleration.x;
-//         // y軸
-//         var y = event.acceleration.y;
-//         // z軸
-//         var z = event.acceleration.z;
+window.addEventListener("devicemotion",
+    // イベント発生
+    function () {
+        // x軸
+        var posx = event.acceleration.x;
+        // y軸
+        var posy = event.acceleration.y;
+        // z軸
+        var posz = event.acceleration.z;
 
-//         var camera = document.getElementById('camera');
+        var rotz = evt.rotationRate.alpha; //z方向
+        var rotx = evt.rotationRate.beta; //x方向
+        var roty = evt.rotationRate.gamma; // y方向
 
-//         camera
-//         var position = camera.getAttribute('position');
-//         var rotation = camera.getAttribute('rotation');
+        var camera = document.getElementById('camera');
 
-//         position.x += x;
-//         position.z += z;
-//         camera.setAttribute('position', position);
-//     });
+        var position = camera.getAttribute('position');
+        var rotation = camera.getAttribute('rotation');
 
-let test = function (posx, posy) {
-    var camera = document.getElementById('camera');
-    var position = camera.getAttribute('position');
+        position.x += posx;
+        position.z += posz;
 
-    position.x += posx;
-    position.z += posy;
-    camera.setAttribute('position', position);
+        rotation.x = rotx;
+        rotation.y = roty;
+        rotation.z = rotz;
 
-}
+        camera.setAttribute('position', position);
+        camera.setAttribute('rotation', rotation);
+    });
+
+// let test = function (posx, posy) {
+//     var camera = document.getElementById('camera');
+//     var position = camera.getAttribute('position');
+
+//     position.x += posx;
+//     position.z += posy;
+//     camera.setAttribute('position', position);
+
+// }
