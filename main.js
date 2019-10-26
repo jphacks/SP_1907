@@ -20,24 +20,25 @@ request_permission = function () {
     $("body").html(innerHtml);
 }
 
+let flag = false;
 
 window.addEventListener("devicemotion",
     // イベント発生
     function () {
 
         // x軸
-        var posx = event.acceleration.x;
+        var accelx = event.acceleration.x;
         // y軸
-        var posy = event.acceleration.y;
+        var accely = event.acceleration.y;
         // z軸
-        var posz = event.acceleration.z;
+        var accelz = event.acceleration.z;
 
         let sx = 0;
         let sy = 0;
         let sz = 0;
 
-        let pos = [posx, posy, posz];
-        let posSpeed = [sx, sy, sz];
+        let accel = [accelx, accely, accelz];
+        let speed = [sx, sy, sz];
 
         let filterCoefficient = 0.9;
         let lowpassValue = 0;
@@ -54,20 +55,20 @@ window.addEventListener("devicemotion",
         // 速度から算出した変位
         let difference = 0;
 
-        for (let i = 0; i < pos.length; i++) {
+        for (let i = 0; i < accel.length; i++) {
 
             // ローパスフィルター(現在の値 = 係数 * ひとつ前の値 ＋ (1 - 係数) * センサの値)
-            lowpassValue = lowpassValue * filterCoefficient + pos[i] * (1 - filterCoefficient);
+            lowpassValue = lowpassValue * filterCoefficient + accel[i] * (1 - filterCoefficient);
             // ハイパスフィルター(センサの値 - ローパスフィルターの値)
-            highpassValue = pos[i] - lowpassValue;
+            highpassValue = accel[i] - lowpassValue;
 
             // 速度計算(加速度を台形積分する)
-            posSpeed[i] = ((highpassValue + oldAccel) * timeSpan) / 2 + posSpeed[i];
+            speed[i] = ((highpassValue + oldAccel) * timeSpan) / 2 + speed[i];
             oldAccel = highpassValue;
 
             // 変位計算(速度を台形積分する)
-            difference = ((posSpeed[i] + oldSpeed) * timeSpan) / 2 + difference;
-            oldSpeed = posSpeed[i];
+            difference = ((speed[i] + oldSpeed) * timeSpan) / 2 + difference;
+            oldSpeed = speed[i];
 
         }
 
