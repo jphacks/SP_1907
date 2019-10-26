@@ -151,8 +151,6 @@ $(function () {
 
 $(document).on("touchmove", "#touchDet",
     function (event) {
-        event.preventDefault();
-
         var touches = event.changedTouches;
 
         if (touches.length > 1) {
