@@ -16,7 +16,7 @@
 
 <body style="margin:0px; overflow:hidden;">
 
-    <a-scene>
+    <a-scene embedded arjs="debugUIEnabled:false;">
         <a-assets>
             <a-asset-item id="model" src="Models/syachi.glb"></a-asset-item>
         </a-assets>
@@ -27,6 +27,8 @@
         <!-- <a-gltf-model src="#model" scale="1 1 1"></a-gltf-model> -->
         <!-- <a-entity scale="1 1 1" fbx-model="src: url(Models/syachi.fbx);"> -->
         <!-- </a-entity> -->
+        <a-entity camera></a-entity>
+
     </a-scene>
 </body>
 
