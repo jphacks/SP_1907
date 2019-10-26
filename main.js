@@ -1,11 +1,15 @@
-let innerHtml = '<a-scene><a-assets>    <a-asset-item id="model" src="Models/Pinga.glb"></a-asset-item></a-assets><a-entity id="syachi" gltf-model="#model" animation-mixer position="0 0 2" rotation="0 140 -10"    scale="1 1 1" visible="true"></a-entity><a-entity id="camera" camera position="0 0 0" look-controls></a-entity></a-scene>';
+let innerHtml = '<a-scene><a-assets>'
+    + '<a-asset-item id="model" src="Models/Pinga.glb"></a-asset-item></a-assets>'
+    +'<a-entity id="syachi" gltf-model="#model" animation-mixer position="0 0 2" rotation="0 0 0"'
+    +'scale="1 1 1" visible="true"></a-entity>'
+    +'<a-entity id="camera" camera position="0 0 0" rotation="0 0 0"></a-entity></a-scene>';
 
 
 let os = navigator.platform;                // OS名の取得
 let osNum;
 if (os === "iPhone" || os === "iPad" || os === "iPod") {     // iOSなら
     osNum = 1;
-}else{
+} else {
     osNum = -1;
 }
 
