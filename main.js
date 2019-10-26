@@ -1,8 +1,8 @@
 let innerHtml = '<a-scene><a-assets>    <a-asset-item id="model" src="Models/syachi.glb"></a-asset-item></a-assets><a-entity gltf-model="#model" animation-mixer position="-0.55 0 -1" rotation="0 140 -10"    scale="1 1 1" visible="true"></a-entity><!-- <a-gltf-model src="#model" scale="1 1 1"></a-gltf-model> --><!-- <a-entity scale="1 1 1" fbx-model="src: url(Models/syachi.fbx);"> -->    <!-- </a-entity> --><!-- <a-entity camera></a-entity> --></a-scene>';
 
-$(window).click(request_permission());
+// $(window).click(request_permission());
 
-function request_permission() {
+request_permission = function() {
 
     if (
         DeviceMotionEvent &&
