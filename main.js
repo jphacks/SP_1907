@@ -38,7 +38,7 @@ window.addEventListener("devicemotion",
         var camera = document.getElementById('camera');
 
         var position = camera.getAttribute('position');
-        var rotation = camera.getAttribute('rotation');
+        // var rotation = camera.getAttribute('rotation');
 
         position.x += posx;
         position.z += posz;
@@ -48,7 +48,7 @@ window.addEventListener("devicemotion",
         rotation.z = rotz;
 
         camera.setAttribute('position', position);
-        camera.setAttribute('rotation', rotation);
+        // camera.setAttribute('rotation', rotation);
     });
 
 // let test = function (posx, posy) {
