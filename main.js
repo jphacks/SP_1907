@@ -2,7 +2,7 @@ let innerHtml = '<a-scene id="touchDet"><a-assets>'
     + '<a-asset-item id="model" src="Models/Pinga.glb"></a-asset-item></a-assets>'
     + '<a-entity id="syachi" gltf-model="#model" animation-mixer position="0 0 2" rotation="0 0 0"'
     + 'scale="1 1 1" visible="true"></a-entity>'
-    + '<a-entity id="camera" camera position="0 0 0" look-controls></a-entity>'
+    + '<a-entity id="camera" camera position="0 0 0"></a-entity>'
     + '<a-box id="cube" scale="1 1 1" position="0 0 -3" color="red"></a-box>';
 +'</a-scene>'
 
