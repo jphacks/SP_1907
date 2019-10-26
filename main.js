@@ -34,12 +34,11 @@ function() {
 
     var camera = document.getElementById('camera');
 
-    if (camera && !isIntersect) {
+    camera
         var position = camera.getAttribute('position');
         var rotation = camera.getAttribute('rotation');
 
         position.x +=  x;
         position.z +=  z;
         camera.setAttribute('position', position);
-    }
 });
