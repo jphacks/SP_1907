@@ -71,7 +71,7 @@ window.addEventListener("devicemotion",
             oldSpeed = speed[i];
 
         }
-        $('#speed').html(`<p>speed</p><p>${speed[0].toFixed(2)}</p><p>${speed[1].toFixed(2)}</p><p>${speed[2].toFixed(2)}</p>`);
+        // $('#speed').html(`<p>speed</p><p>${speed[0].toFixed(2)}</p><p>${speed[1].toFixed(2)}</p><p>${speed[2].toFixed(2)}</p>`);
 
         // var rotz = event.rotationRate.alpha; //z方向
         // var rotx = event.rotationRate.beta; //x方向
@@ -84,9 +84,9 @@ window.addEventListener("devicemotion",
         var position = camera.getAttribute('position');
         // var rotation = camera.getAttribute('rotation');
 
-        // position.x += 0.1 * speed[1];
-        // position.y += 0.1 * speed[2];
-        // position.z += 0.1 * speed[3];
+        position.x += 0.01 * speed[1];
+        position.y += 0.01 * speed[2];
+        position.z += 0.01 * speed[3];
 
         $('#pos').text(`position = ${position}`);
 
