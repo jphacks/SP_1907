@@ -135,20 +135,17 @@ window.addEventListener("devicemotion",
 // }
 
 // 平面規定処理--------------
+$("#touchDet").onReady(function (e) {
+    touchDetector = document.getElementById('touchDet');
 
-$(function () {
-    $('#touchDet').each(function () {
-        touchDetector = document.getElementById('touchDet');
+    testCube = document.getElementById('cube');
+    cubeScale = testCube.getAttribute('scale');
+    // base
+    beseDistance = 0;
+    baseCubeX = 0;
+    baseCubeY = 0;
 
-        testCube = document.getElementById('cube');
-        cubeScale = testCube.getAttribute('scale');
-        // base
-        beseDistance = 0;
-        baseCubeX = 0;
-        baseCubeY = 0;
-
-        timeoutId = null;
-    });
+    timeoutId = null;
 });
 
 $(document).on("touchmove", "#touchDet",
