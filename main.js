@@ -40,11 +40,13 @@ request_permission = function () {
 
 let flag = false;
 
+let isMove = false;
+
 
 window.addEventListener("devicemotion",
     // イベント発生
     function () {
-        if (document.getElementById('camera') == null) {
+        if (document.getElementById('camera') == null || !isMove) {
             return;
         }
         var camera = document.getElementById('camera');
@@ -133,55 +135,56 @@ window.addEventListener("devicemotion",
 // }
 
 // 平面規定処理--------------
-$(document).on("touchmove", "#touchDet",
-    function () {
+
+$(function () {
+    $('#touchDet').each(function () {
         touchDetector = document.getElementById('touchDet');
 
         testCube = document.getElementById('cube');
         cubeScale = testCube.getAttribute('scale');
         // base
-        let beseDistance = 0;
-        let baseCubeX = 0;
-        let baseCubeY = 0;
+        beseDistance = 0;
+        baseCubeX = 0;
+        baseCubeY = 0;
+    });
+});
 
-        // touchmove
-        touchDetector.ontouchmove = function (event) {
-            alert('OK');
-            event.preventDefault();
+$(document).on("touchmove", "#touchDet",
+    function (event) {
+        event.preventDefault();
 
-            var touches = event.changedTouches;
+        var touches = event.changedTouches;
 
-            if (touches.length > 1) {
-                var x1 = touches[0].pageX;
-                var y1 = touches[0].pageY;
+        if (touches.length > 1) {
+            var x1 = touches[0].pageX;
+            var y1 = touches[0].pageY;
 
-                var x2 = touches[1].pageX;
-                var y2 = touches[1].pageY;
+            var x2 = touches[1].pageX;
+            var y2 = touches[1].pageY;
 
-                var distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            var distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 
-                clearTimeout(timeoutId);
+            clearTimeout(timeoutId);
 
-                if (beseDistance && baseCubeX && baseCubeY) {
-                    var scale = distance / beseDistance;
+            if (beseDistance && baseCubeX && baseCubeY) {
+                var scale = distance / beseDistance;
 
-                    if (scale && scale != Infinity) {
-                        cubeScale.x = baseCubeX * scale;
-                        cubeScale.y = baseCubeY * scale;
-                    }
-
-                    timeoutId = setTimeout(function () {
-                        beseDistance = 0;
-                        baseCubeX = 0;
-                        baseCubeY = 0;
-                    }, 100);
-
-                } else {
-                    beseDistance = distance;
-                    baseCubeX = cubeScale.x;
-                    baseCubeY = cubeScale.y;
-
+                if (scale && scale != Infinity) {
+                    cubeScale.x = baseCubeX * scale;
+                    cubeScale.y = baseCubeY * scale;
                 }
+
+                timeoutId = setTimeout(function () {
+                    beseDistance = 0;
+                    baseCubeX = 0;
+                    baseCubeY = 0;
+                }, 100);
+
+            } else {
+                beseDistance = distance;
+                baseCubeX = cubeScale.x;
+                baseCubeY = cubeScale.y;
+
             }
         }
     }
