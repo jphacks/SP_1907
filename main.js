@@ -146,6 +146,8 @@ $(function () {
         beseDistance = 0;
         baseCubeX = 0;
         baseCubeY = 0;
+
+        timeoutId = null;
     });
 });
 
