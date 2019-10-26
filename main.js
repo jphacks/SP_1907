@@ -33,7 +33,7 @@ request_permission = function () {
     ) {
         DeviceOrientationEvent.requestPermission();
     }
-    $("body").html(innerHtml);
+    $("#container").html(innerHtml);
 }
 
 let flag = false;
