@@ -142,6 +142,7 @@ let cubeScale = testCube.getAttribute('scale');
 
 // touchmove
 window.ontouchmove = function ( event ) {
+    alert('OK');
 	event.preventDefault() ;
 
 	var touches = event.changedTouches ;
