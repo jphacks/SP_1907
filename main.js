@@ -102,9 +102,9 @@ window.addEventListener("devicemotion",
 
         // position.x += 10 * -speed[0];
         // position.y += 10 * speed[1];
-        position.x += Math.cos(rotation.y * (Math.PI / 180)) * speed[2];
+        position.x += Math.cos(rotation.y * (Math.PI / 180)) * 10 * speed[2];
         position.y += 0;
-        position.z += Math.sin(rotation.y * (Math.PI / 180)) * speed[2];
+        position.z += Math.sin(rotation.y * (Math.PI / 180)) * 10 * speed[2];
         // position.z += 10 * -speed[2].toFixed(1);
         // position.z += difference[2];
 
@@ -115,7 +115,7 @@ window.addEventListener("devicemotion",
         // rotation.z = rotz;
 
         camera.setAttribute('position', position);
-        camera.setAttribute('rotation', rotation);
+        // camera.setAttribute('rotation', rotation);
     });
 
 // let test = function (posx, posy) {
