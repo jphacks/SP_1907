@@ -99,7 +99,7 @@ window.addEventListener("devicemotion",
         // position.y += 10 * speed[1];
         position.x += 0;
         position.y += 0;
-        position.z += 100 * -speed[2].toFixed(1);
+        position.z += 10 * -speed[2].toFixed(1);
 
         $('#pos').text(`position = ${position}`);
 
