@@ -83,7 +83,7 @@ window.addEventListener("devicemotion",
             oldAccel = highpassValue;
 
             // 変位計算(速度を台形積分する)
-            difference[i] = ((speed[i] + oldSpeed) * timeSpan) / 2 + difference;
+            difference[i] = ((speed[i] + oldSpeed) * timeSpan) / 2 + difference[i];
             oldSpeed = speed[i];
 
         }
