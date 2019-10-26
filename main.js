@@ -2,15 +2,15 @@ let innerHtml = '<a-scene><a-assets>'
     + '<a-asset-item id="model" src="Models/Pinga.glb"></a-asset-item></a-assets>'
     +'<a-entity id="syachi" gltf-model="#model" animation-mixer position="0 0 2" rotation="0 0 0"'
     +'scale="1 1 1" visible="true"></a-entity>'
-    +'<a-entity id="camera" camera position="0 0 0" rotation="0 0 0"></a-entity></a-scene>';
+    +'<a-entity id="camera" camera position="0 0 0" look-controls></a-entity></a-scene>';
 
 
 let os = navigator.platform;                // OS名の取得
 let osNum;
 if (os === "iPhone" || os === "iPad" || os === "iPod") {     // iOSなら
-    osNum = 1;
-} else {
     osNum = -1;
+} else {
+    osNum = 1;
 }
 
 
@@ -98,13 +98,13 @@ window.addEventListener("devicemotion",
         // var roty = event.rotationRate.gamma; // y方向
 
         var position = camera.getAttribute('position');
-        // var rotation = camera.getAttribute('rotation');
+        var rotation = camera.getAttribute('rotation');
 
         // position.x += 10 * -speed[0];
         // position.y += 10 * speed[1];
-        position.x += 0;
+        position.x += Math.cos(rotation.y * (Math.PI / 180)) * speed[2];
         position.y += 0;
-        position.z += 10 * -speed[2];
+        position.z += Math.sin(rotation.y * (Math.PI / 180)) * speed[2];
         // position.z += 10 * -speed[2].toFixed(1);
         // position.z += difference[2];
 
@@ -115,7 +115,7 @@ window.addEventListener("devicemotion",
         // rotation.z = rotz;
 
         camera.setAttribute('position', position);
-        // camera.setAttribute('rotation', rotation);
+        camera.setAttribute('rotation', rotation);
     });
 
 // let test = function (posx, posy) {
