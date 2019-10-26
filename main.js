@@ -32,6 +32,10 @@ window.addEventListener("devicemotion",
         // z軸
         var posz = event.acceleration.z;
 
+        let sx = 0;
+        let sy = 0;
+        let sz = 0;
+
         let pos = [posx, posy, posz];
         let posSpeed = [sx, sy, sz];
 
@@ -76,9 +80,9 @@ window.addEventListener("devicemotion",
         var position = camera.getAttribute('position');
         // var rotation = camera.getAttribute('rotation');
 
-        position.x += 10 * posSpeed[1];
-        position.y += 10 * posSpeed[2];
-        position.z += 10 * posSpeed[3];
+        position.x += posSpeed[1];
+        position.y += posSpeed[2];
+        position.z += posSpeed[3];
 
         // rotation.x = rotx;
         // rotation.y = roty;
