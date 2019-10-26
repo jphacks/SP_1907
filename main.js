@@ -38,8 +38,8 @@ function() {
         var position = camera.getAttribute('position');
         var rotation = camera.getAttribute('rotation');
 
-        position.x += -Math.cos((rotation.y - 90) * Math.PI / 180) * x;
-        position.z += Math.sin((rotation.y - 90) * Math.PI / 180) * z;
+        position.x +=  x;
+        position.z +=  z;
         camera.setAttribute('position', position);
     }
 });
