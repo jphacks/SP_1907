@@ -2,7 +2,8 @@ let innerHtml = '<a-scene><a-assets>'
     + '<a-asset-item id="model" src="Models/Pinga.glb"></a-asset-item></a-assets>'
     +'<a-entity id="syachi" gltf-model="#model" animation-mixer position="0 0 2" rotation="0 0 0"'
     +'scale="1 1 1" visible="true"></a-entity>'
-    +'<a-entity id="camera" camera position="0 0 0" look-controls></a-entity></a-scene>';
+    +'<a-entity id="camera" camera position="0 0 0" look-controls></a-entity></a-scene>'
+    +'    <a-box id="cube" scale="1 1 1" position="0 0 -3" depth="1" color="red"></a-box>';
 
 
 let os = navigator.platform;                // OS名の取得
@@ -127,3 +128,53 @@ window.addEventListener("devicemotion",
 //     camera.setAttribute('position', position);
 
 // }
+
+// 平面規定処理--------------
+
+// base
+let beseDistance = 0 ;
+let baseCubeX = 0 ;
+let baseCubeY = 0 ;
+
+let testCube = document.getElementById('cube');
+let cubeScale = testCube.getAttribute('scale');
+
+// touchmove
+window.ontouchmove = function ( event ) {
+	event.preventDefault() ;
+
+	var touches = event.changedTouches ;
+
+	if ( touches.length > 1 ) {
+		var x1 = touches[0].pageX ;
+		var y1 = touches[0].pageY ;
+
+		var x2 = touches[1].pageX ;
+		var y2 = touches[1].pageY ;
+
+		var distance = Math.sqrt( Math.pow( x2-x1, 2 ) + Math.pow( y2-y1, 2 ) ) ;
+
+		clearTimeout( timeoutId ) ;
+
+		if ( beseDistance && baseCubeX && baseCubeY ) {
+			var scale = distance / beseDistance ;
+
+			if ( scale && scale != Infinity ) {
+				cubeScale.x = baseCubeX * scale ;
+				cubeScale.y = baseCubeY * scale ;
+			}
+
+			timeoutId = setTimeout( function () {
+				beseDistance = 0 ;
+				baseCubeX = 0 ;
+				baseCubeY = 0 ;
+			}, 100 ) ;
+
+		} else {
+			beseDistance = distance ;
+			baseCubeX = cubeScale.x;
+			baseCubeY = cubeScale.y;
+
+		}
+	}
+}
