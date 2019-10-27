@@ -47,6 +47,13 @@ request_permission = function () {
         + '</div>'
         + '</div>'
     )
+    setTimeout(
+        setInterval(() => {
+            if(flag){
+                $('.container').toggleClass('display-none')
+            }
+        }, 3500)
+    ,5000);
 }
 
 let flag = false;
@@ -201,9 +208,8 @@ $(document).on("touchmove", "#touchDet",
 );
 
 let startAR = function () {
-    setInterval(() => {
-        $('.container').toggleClass('display-none')
-    }, 3500);
+    flag = true;
+
     testCube.setAttribute("visible", false)
     let animal = document.getElementById("animal");
     let position = testCube.getAttribute("position");
