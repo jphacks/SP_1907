@@ -50,17 +50,23 @@ request_permission = function () {
         + '<div'
         + ' style="color: rgba(0, 0, 0, 0.9); background-color: rgba(127, 127, 127, 0.5); display: inline-block; padding: 0.5em; margin: 0.5em; text-align: left;">'
         + '<span style="display: block;">'
-        // + '<button id="syachi-btn" class="btn-primary">シャチ</button>'
-        // + '<button id="penguin-btn" class="btn-primary">ペンギン</button>'
-        // + '<button id="tiger-btn" class="btn-primary">トラ</button>'
+        + '<button id="syachi-btn" class="btn-primary">シャチ</button>'
+        + '<button id="penguin-btn" class="btn-primary">ペンギン</button>'
+        + '<button id="tiger-btn" class="btn-primary">トラ</button>'
         + '<button id="tiger-btn" class="btn-primary" onclick="startAR()">MoveStart</button>'
         + '</span>'
         + '</div>'
         + '</div>'
     )
-    $('#syachi-btn').on('click', startAR('syachi'));
-    $('#penguin-btn').on('click', startAR('penguin'));
-    $('#tiger-btn').on('click', startAR('tiger'));
+    $('#syachi-btn').on('click', function(){
+        startAR('syachi');
+    });
+    $('#penguin-btn').on('click',function(){
+        startAR('penguin');
+    });
+    $('#tiger-btn').on('click',function(){
+        startAR('tiger');
+    });
 
     setTimeout(
         setInterval(() => {
