@@ -254,7 +254,7 @@ let startAR = function (name) {
             animal = penguin;
             break;
         case "tiger":
-            grass.setAttribute('visible', true);
+            // grass.setAttribute('visible', true);
             animal = tiger;
             break;
         default:
