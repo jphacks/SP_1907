@@ -238,6 +238,7 @@ $(document).on("touchmove", "#touchDet",
 
 let startAR = function (name) {
     testCube.setAttribute("visible", false);
+    $(".btn-primary").addClass("display-none");
 
     let syachi = document.getElementById("animal-syachi");
     let penguin = document.getElementById("animal-penguin");
@@ -246,10 +247,13 @@ let startAR = function (name) {
 
     let modifyScale = 0;
 
+    let position = testCube.getAttribute("position");
+
     switch (name) {
         case "syachi":
             flag = true;
             animal = syachi;
+            position.z += 3;
             modifyScale = 10;
             break;
         case "penguin":
@@ -264,7 +268,6 @@ let startAR = function (name) {
         default:
             break;
     }
-    let position = testCube.getAttribute("position");
     isMove = true;
 
     // animal = tiger;
