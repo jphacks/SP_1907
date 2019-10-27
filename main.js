@@ -48,20 +48,13 @@ request_permission = function () {
         + '</div>'
         + '</div>'
     )
-    setInterval(() => {
-        setTimeout(() => {
+    setTimeout(() => {
+        setInterval(() => {
             if (flag) {
-                $('.container').removeClass('display-none')
+                $('.container').toggleClass('display-none');
             }
-        }, 2000);
-
-        setTimeout(() => {
-            if (flag) {
-                $('.container').addClass('display-none')
-            }
-        }, 5000);
-
-    }, 7000);
+        }, 7000);
+    }, 5000);
 }
 
 let flag = false;
