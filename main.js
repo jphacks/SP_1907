@@ -263,7 +263,7 @@ let startAR = function (name) {
     let position = testCube.getAttribute("position");
     isMove = true;
 
-    animal = tiger;
+    // animal = tiger;
     animal.setAttribute('position', `${position.x} ${position.y} ${position.z}`);
     animal.setAttribute('scale', `${cubeScale.x * 0.1} ${cubeScale.y * 0.1} ${cubeScale.z * 0.1}`);
     animal.setAttribute('visible', true);
