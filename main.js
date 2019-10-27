@@ -114,7 +114,7 @@ window.addEventListener("devicemotion",
         // position.z += 10 * -speed[2].toFixed(1);
         // position.z += difference[2];
 
-        $('#pos').text(`position = ${position}`);
+        $('#pos').text(`position = x:${position.x.toFixed(2)} y:${position.y.toFixed(2)} z:${position.z.toFixed(2)}`);
 
         // rotation.x = rotx;
         // rotation.y = roty;
