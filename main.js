@@ -50,16 +50,17 @@ request_permission = function () {
         + '<div'
         + ' style="color: rgba(0, 0, 0, 0.9); background-color: rgba(127, 127, 127, 0.5); display: inline-block; padding: 0.5em; margin: 0.5em; text-align: left;">'
         + '<span style="display: block;">'
-        + '<button id="syachi-btn" class="btn-primary">シャチ</button>'
-        + '<button id="penguin-btn" class="btn-primary">ペンギン</button>'
-        + '<button id="tiger-btn" class="btn-primary">トラ</button>'
+        // + '<button id="syachi-btn" class="btn-primary">シャチ</button>'
+        // + '<button id="penguin-btn" class="btn-primary">ペンギン</button>'
+        // + '<button id="tiger-btn" class="btn-primary">トラ</button>'
+        + '<button id="tiger-btn" class="btn-primary" onclick="startAR()">MoveStart</button>'
         + '</span>'
         + '</div>'
         + '</div>'
     )
-    $('#syachi-btn').on('click', startAR('syachi'));
-    $('#penguin-btn').on('click', startAR('penguin'));
-    $('#tiger-btn').on('click', startAR('tiger'));
+    // $('#syachi-btn').on('click', startAR('syachi'));
+    // $('#penguin-btn').on('click', startAR('penguin'));
+    // $('#tiger-btn').on('click', startAR('tiger'));
 
     setTimeout(
         setInterval(() => {
@@ -256,6 +257,7 @@ let startAR = function (name) {
     let position = testCube.getAttribute("position");
     isMove = true;
 
+    animal = penguin
     animal.setAttribute('position', `${position.x} ${position.y} ${position.z}`);
     animal.setAttribute('scale', `${cubeScale.x * 0.1} ${cubeScale.y * 0.1} ${cubeScale.z * 0.1}`);
     animal.setAttribute('visible', true);
