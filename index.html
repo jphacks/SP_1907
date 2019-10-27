@@ -22,7 +22,14 @@
         <!-- ここにa-sceneとかが入る -->
     </div>
     <div class="container display-none">
-        <canvas id="container" width="261" height="463" style="position:absolute;top:0;left:0;width:100%;height:100%"></canvas>
+        <canvas id="container" width="261" height="463"
+            style="position:absolute;top:0;left:0;width:100%;height:100%"></canvas>
+    </div>
+    <div style="position: fixed; bottom: 10px; width:100%; text-align: center; z-index: 1;color: grey;">
+        <div
+            style="color: rgba(0, 0, 0, 0.9); background-color: rgba(127, 127, 127, 0.5); display: inline-block; padding: 0.5em; margin: 0.5em; text-align: left;">
+            <span style="display: block;"><button class="btn-primary">てすと</button></span>
+        </div>
     </div>
 
     <button type="button" class="btn-primary" onclick="request_permission()">Start</button>
