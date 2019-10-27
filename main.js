@@ -33,7 +33,7 @@ $('<img src="img/caution.png">');
 
 // iOSだった時にモーション取得するための関数
 request_permission = function () {
-    $(this).addClass('display-none');
+    $('#start').addClass('display-none');
     if (
         DeviceMotionEvent &&
         DeviceMotionEvent.requestPermission &&
