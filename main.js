@@ -1,11 +1,16 @@
 let innerHtml = '<a-scene id="touchDet" arjs="debugUIEnabled:false;"><a-assets>'
     + '<a-asset-item id="penguin" src="Models/Pinga.glb"></a-asset-item>'
     + '<a-asset-item id="syachi" src="Models/syachi.glb"></a-asset-item>'
-    // + '<a-asset-item id="syachi" src="Models/Grass.glb"></a-asset-item>'
+    + '<a-asset-item id="tiger" src="Models/Tigerpro.glb"></a-asset-item>'
+    + '<a-asset-item id="grass" src="Models/Grass.glb"></a-asset-item>'
     + '</a-assets>'
-    // + '<a-entity id="animal" gltf-model="#penguin" animation-mixer position="0 0 2" rotation="0 0 0"'
-    // + 'scale="1 1 1" visible="false"></a-entity>'
-    + '<a-entity id="animal" gltf-model="#syachi" animation-mixer position="0 0 2" rotation="0 90 0"'
+    + '<a-entity id="animal-penguin" gltf-model="#penguin" animation-mixer position="0 0 2" rotation="0 90 0"'
+    + 'scale="1 1 1" visible="false"></a-entity>'
+    + '<a-entity id="animal-syachi" gltf-model="#syachi" animation-mixer position="0 0 2" rotation="0 90 0"'
+    + 'scale="1 1 1" visible="false"></a-entity>'
+    + '<a-entity id="animal-tiger" gltf-model="#tiger" animation-mixer position="0 0 2" rotation="0 90 0"'
+    + 'scale="1 1 1" visible="false"></a-entity>'
+    + '<a-entity id="grass" gltf-model="#grass" look-controls animation-mixer position="0 0 -1" rotation="0 0 0"'
     + 'scale="1 1 1" visible="false"></a-entity>'
     + '<a-entity id="camera" camera position="0 0 0" look-controls></a-entity>'
     + '<a-box id="cube" scale="1 1 1" position="0 0 -3" color="red"></a-box>'
@@ -44,7 +49,11 @@ request_permission = function () {
         '<div style="position: fixed; bottom: 10px; width:100%; text-align: center; z-index: 1;color: grey;">'
         + '<div'
         + ' style="color: rgba(0, 0, 0, 0.9); background-color: rgba(127, 127, 127, 0.5); display: inline-block; padding: 0.5em; margin: 0.5em; text-align: left;">'
-        + '<span style="display: block;"><button class="btn-primary" onclick="startAR()">MoveStart</button></span>'
+        + '<span style="display: block;">'
+        + '<button class="btn-primary" onclick="startAR("syachi")">シャチ</button>'
+        + '<button class="btn-primary" onclick="startAR("penguin")">ペンギン</button>'
+        + '<button class="btn-primary" onclick="startAR("tiger")">トラ</button>'
+        + '</span>'
         + '</div>'
         + '</div>'
     )
@@ -217,11 +226,29 @@ $(document).on("touchmove", "#touchDet",
     }
 );
 
-let startAR = function () {
+let startAR = function (name) {
     flag = true;
 
-    testCube.setAttribute("visible", false)
-    let animal = document.getElementById("animal");
+    testCube.setAttribute("visible", false);
+
+    let syachi = document.getElementById("animal-syachi");
+    let penguin = document.getElementById("animal-penguin");
+    let tiger = document.getElementById("animal-tiger");
+    let grass = document.getElementById("grass");
+
+    switch (name) {
+        case "syachi":
+            animal = syachi;
+            break;
+        case "penguin":
+            animal = penguin;
+            break;
+        case "tiger":
+            animal = tiger;
+            break;
+        default:
+            break;
+    }
     let position = testCube.getAttribute("position");
     isMove = true;
 
