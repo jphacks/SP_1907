@@ -185,12 +185,12 @@ $(document).on("touchmove", "#touchDet",
     }
 );
 
-let showWater = function(){
-    $('.container').removeClass('display-none');
-    setTimeout(() => {
+let showWater = function () {
     $('.container').addClass('display-none');
-        
-    }, 2000);
+    setTimeout(() => {
+        $('.container').removeClass('display-none');
+
+    }, 5000);
 }
 
 let startAR = function (name) {
@@ -210,7 +210,7 @@ let startAR = function (name) {
         case "syachi":
             animal = syachi;
             modifyScale = 0.1;
-            animal.addEventListener("animation-loop",function(){
+            animal.addEventListener("animation-loop", function () {
                 showWater();
             });
             break;
