@@ -1,5 +1,5 @@
 # safARi pARk
-[![Product Name](image.png)](https://www.youtube.com/watch?v=9qqb6DSn8jo&feature=youtu.be)
+[![](icon.png)](https://www.youtube.com/watch?v=9qqb6DSn8jo&feature=youtu.be)
 
 ## 製品概要
 ### Window × Tech
