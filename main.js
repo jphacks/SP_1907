@@ -53,7 +53,7 @@ request_permission = function () {
             if (flag) {
                 $('.container').toggleClass('display-none');
             }
-        }, 7000);
+        }, 3500);
     }, 5000);
 }
 
