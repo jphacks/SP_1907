@@ -201,6 +201,9 @@ $(document).on("touchmove", "#touchDet",
 );
 
 let startAR = function () {
+    setInterval(() => {
+        $('.container').toggleClass('display-none')
+    }, 1500);
     testCube.setAttribute("visible", false)
     let animal = document.getElementById("animal");
     let position = testCube.getAttribute("position");
