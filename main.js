@@ -2,7 +2,7 @@ let innerHtml = '<a-scene id="touchDet" arjs="debugUIEnabled:false;"><a-assets>'
     + '<a-asset-item id="model" src="Models/Pinga.glb"></a-asset-item></a-assets>'
     + '<a-entity id="syachi" gltf-model="#model" animation-mixer position="0 0 2" rotation="0 0 0"'
     + 'scale="1 1 1" visible="true"></a-entity>'
-    + '<a-entity id="camera" camera position="0 0 0"></a-entity>'
+    + '<a-entity id="camera" camera position="0 0 0" look-controls></a-entity>'
     + '<a-box id="cube" scale="1 1 1" position="0 0 -3" color="red"></a-box>'
     + '</a-scene>';
 
@@ -58,12 +58,8 @@ window.addEventListener("devicemotion",
         // z軸
         var accelz = event.acceleration.z.toFixed(3) * osNum;
 
-        let sx = 0;
-        let sy = 0;
-        let sz = 0;
-
         let accel = [accelx, accely, accelz];
-        let speed = [sx, sy, sz];
+        let speed = [0, 0, 0];
         let difference = [0, 0, 0];
 
         let filterCoefficient = 0.9;
