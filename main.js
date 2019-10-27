@@ -220,13 +220,15 @@ $(document).on("touchmove", "#touchDet",
                 baseCubeZ = cubeScale.z;
 
             }
-        } else if (touches.length == 1) {
-            var x = touches[0].pageX;
-            var y = touches[0].pageY;
-
-            cubePosition.y += y;
-
         }
+        // else
+        //  if (touches.length == 1) {
+        //     var x = touches[0].pageX;
+        //     var y = touches[0].pageY;
+
+        //     // cubePosition.y += y;
+
+        // }
     }
 );
 
