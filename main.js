@@ -10,7 +10,7 @@ let innerHtml = '<a-scene id="touchDet" arjs="debugUIEnabled:false;"><a-assets>'
     + 'scale="1 1 1" visible="false"></a-entity>'
     + '<a-entity id="animal-tiger" gltf-model="#tiger" animation-mixer position="0 0 2" rotation="0 90 0"'
     + 'scale="1 1 1" visible="false"></a-entity>'
-    + '<a-entity id="grass" gltf-model="#grass" look-controls animation-mixer position="0 0 -1" rotation="0 0 0"'
+    + '<a-entity id="grass" gltf-model="#grass" look-controls animation-mixer position="0 2 -1" rotation="0 0 0"'
     + 'scale="1 1 1" visible="false"></a-entity>'
     + '<a-entity id="camera" camera position="0 0 0" look-controls></a-entity>'
     + '<a-box id="cube" scale="1 1 1" position="0 0 -3" color="red"></a-box>'
@@ -247,17 +247,14 @@ let startAR = function (name) {
 
     switch (name) {
         case "syachi":
-            animal.setAttribute('visible', false);
             flag = true;
             animal = syachi;
             break;
         case "penguin":
-            animal.setAttribute('visible', false);
             animal = penguin;
             break;
         case "tiger":
             grass.setAttribute('visible', false);
-            animal.setAttribute('visible', false);
             animal = tiger;
             break;
         default:
