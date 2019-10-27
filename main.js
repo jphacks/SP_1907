@@ -140,16 +140,16 @@ let baseCubeY = 0;
 
 let timeoutId;
 // 平面規定処理--------------
-$(document).on('ready', '#touchDet', function (e) {
-    touchDetector = document.getElementById('touchDet');
+// $(document).on('ready', '#touchDet', function (e) {
 
-    testCube = document.getElementById('cube');
-    cubeScale = testCube.getAttribute('scale');
-
-});
+// });
 
 $(document).on("touchmove", "#touchDet",
     function (event) {
+        touchDetector = document.getElementById('touchDet');
+
+        testCube = document.getElementById('cube');
+        cubeScale = testCube.getAttribute('scale');
         var touches = event.changedTouches;
 
         if (touches.length > 1) {
