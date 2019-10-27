@@ -186,7 +186,7 @@ $(document).on("touchmove", "#touchDet",
 );
 
 let showWater = function(){
-    $('.container').removeclass('display-none');
+    $('.container').removeClass('display-none');
     setTimeout(() => {
     $('.container').addClass('display-none');
         
