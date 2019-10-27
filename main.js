@@ -239,6 +239,10 @@ $(document).on("touchmove", "#touchDet",
 
 let startAR = function (name) {
 
+    if(animal){
+        animal.setAttribute('visible', false);
+    }
+
     animal.setAttribute('visible', true);
 
     testCube.setAttribute("visible", false);
@@ -257,6 +261,7 @@ let startAR = function (name) {
             animal = penguin;
             break;
         case "tiger":
+            grass.setAttribute('visible', false);
             animal = tiger;
             break;
         default:
