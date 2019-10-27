@@ -1,7 +1,7 @@
 let innerHtml = '<a-scene id="touchDet" arjs="debugUIEnabled:false;"><a-assets>'
     + '<a-asset-item id="penguin" src="Models/Pinga.glb"></a-asset-item>'
     + '<a-asset-item id="syachi" src="Models/syachi.glb"></a-asset-item>'
-    + '<a-asset-item id="tiger" src="Models/Tigerpro.glb"></a-asset-item>'
+    + '<a-asset-item id="tiger" src="Models/Tiger.glb"></a-asset-item>'
     + '<a-asset-item id="grass" src="Models/Grass.glb"></a-asset-item>'
     + '</a-assets>'
     + '<a-entity id="animal-penguin" gltf-model="#penguin" animation-mixer position="0 0 2" rotation="0 90 0"'
@@ -238,6 +238,8 @@ $(document).on("touchmove", "#touchDet",
 );
 
 let startAR = function (name) {
+
+    animal.setAttribute('visible', true);
 
     testCube.setAttribute("visible", false);
 
