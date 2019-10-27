@@ -245,9 +245,9 @@ let startAR = function (name) {
 $(window).on('load orientationchange resize', function () {
     if (Math.abs(window.orientation) === 90) {
         // 横向きになったときの処理
-        $('<img src="img/caution.png">').show();
+        $('#caution').addClass("display-none");
     } else {
         // 縦向きになったときの処理
-        $('<img src="img/caution.png">').hide();
+        $('#caution').removeClass("display-none");
     }
 });
