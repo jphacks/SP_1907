@@ -253,8 +253,8 @@ let startAR = function (name) {
         case "syachi":
             flag = true;
             animal = syachi;
-            position.z += 3;
-            modifyScale = 10;
+            position.z -= 3;
+            modifyScale = 5;
             break;
         case "penguin":
             animal = penguin;
