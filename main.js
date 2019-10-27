@@ -135,6 +135,9 @@ let baseCubeX = 0;
 let baseCubeY = 0;
 let baseCubeZ = 0;
 
+let cubeScale = {x:1, y:1, z:1};
+let cubePosition = {x:0, y:0, z:-3};
+
 let timeoutId;
 // 平面規定処理--------------
 
@@ -142,9 +145,9 @@ $(document).on("touchmove", "#touchDet",
     function (event) {
         touchDetector = document.getElementById('touchDet');
 
-        testCube = document.getElementById('cube');
-        cubeScale = testCube.getAttribute('scale');
-        cubePosition = testCube.getAttribute('position');
+        cube = document.getElementById('cube');
+        cubeScale = cube.getAttribute('scale');
+        cubePosition = cube.getAttribute('position');
         var touches = event.changedTouches;
 
         if (touches.length > 1) {
@@ -194,7 +197,7 @@ let showWater = function () {
 
 
 let startAR = function (name) {
-    testCube.setAttribute("visible", false);
+    cube.setAttribute("visible", false);
     $(".btn-primary").addClass("display-none");
 
     let syachi = document.getElementById("animal-syachi");
@@ -203,8 +206,6 @@ let startAR = function (name) {
     let grass = document.getElementById("obj-grass");
 
     let modifyScale = 0;
-
-    let position = testCube.getAttribute("position");
 
     switch (name) {
         case "syachi":
@@ -233,7 +234,7 @@ let startAR = function (name) {
     }
     isMove = true;
 
-    animal.setAttribute('position', `${position.x} ${position.y} ${position.z}`);
+    animal.setAttribute('position', `${cubePosition.x} ${cubePosition.y} ${cubePosition.z}`);
     animal.setAttribute('scale', `${cubeScale.x * modifyScale} ${cubeScale.y * modifyScale} ${cubeScale.z * modifyScale}`);
     animal.setAttribute('visible', true);
 }
