@@ -31,6 +31,11 @@ let innerHtml = '<a-scene id="touchDet" vr-mode-ui="enabled: false" arjs="debugU
 // 画像のプリロード
 $('<img src="img/caution.png">');
 
+// 水しぶきを表示させるかどうか
+let isWater = false;
+// 割れた窓を表示させるか（トラのときのみ表示）
+let isGrass = false;
+
 // iOSだった時にモーション取得するための関数
 request_permission = function () {
     $('#start').addClass('display-none');
@@ -73,6 +78,26 @@ request_permission = function () {
     $('#tiger-btn').on('click', function () {
         startAR('tiger');
     });
+
+    syachi = document.getElementById('animal-syachi');
+    penguin = document.getElementById('animal-penguin');
+    tiger = document.getElementById('animal-tiger');
+    grass = document.getElementById('obj-grass');
+
+    syachi.addEventListener('animation-loop', function () {
+        showWater();
+    });
+
+    tiger.addEventListener('animation-loop', function () {
+        if(!isGrass){
+            return;
+        }
+        grass.setAttribute('visible', false);
+        setTimeout(() => {
+            grass.setAttribute('visible', true);
+        }, 2600);
+    });
+
 }
 
 let isMove = false;
@@ -193,6 +218,9 @@ $(document).on("touchmove", "#touchDet",
 );
 
 let showWater = function () {
+    if(!isWater){
+        return;
+    }
     $('.container').addClass('display-none');
     setTimeout(() => {
         $('.container').removeClass('display-none');
@@ -204,10 +232,6 @@ let startAR = function (name) {
     cube.setAttribute('visible', false);
     $('.btn-primary').addClass('display-none');
 
-    let syachi = document.getElementById('animal-syachi');
-    let penguin = document.getElementById('animal-penguin');
-    let tiger = document.getElementById('animal-tiger');
-    let grass = document.getElementById('obj-grass');
 
     let modifyScale = 0;
 
@@ -215,9 +239,7 @@ let startAR = function (name) {
         case 'syachi':
             animal = syachi;
             modifyScale = 0.1;
-            animal.addEventListener('animation-loop', function () {
-                showWater();
-            });
+            isWater = true;
             break;
         case 'penguin':
             animal = penguin;
@@ -225,13 +247,8 @@ let startAR = function (name) {
             break;
         case 'tiger':
             animal = tiger;
+            isGrass = true;
             modifyScale = 1;
-            animal.addEventListener('animation-loop', function () {
-                grass.setAttribute('visible', false);
-                setTimeout(() => {
-                    grass.setAttribute('visible', true);
-                }, 2600);
-            });
             break;
         default:
             break;
