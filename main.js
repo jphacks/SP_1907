@@ -50,17 +50,16 @@ request_permission = function () {
         + '<div'
         + ' style="color: rgba(0, 0, 0, 0.9); background-color: rgba(127, 127, 127, 0.5); display: inline-block; padding: 0.5em; margin: 0.5em; text-align: left;">'
         + '<span style="display: block;">'
-        // + '<button id="syachi-btn" class="btn-primary">シャチ</button>'
-        // + '<button id="penguin-btn" class="btn-primary">ペンギン</button>'
-        // + '<button id="tiger-btn" class="btn-primary">トラ</button>'
-        + '<button id="tiger-btn" class="btn-primary" onclick="startAR()">MoveStart</button>'
+        + '<button id="syachi-btn" class="btn-primary">シャチ</button>'
+        + '<button id="penguin-btn" class="btn-primary">ペンギン</button>'
+        + '<button id="tiger-btn" class="btn-primary">トラ</button>'
         + '</span>'
         + '</div>'
         + '</div>'
     )
-    // $('#syachi-btn').on('click', startAR('syachi'));
-    // $('#penguin-btn').on('click', startAR('penguin'));
-    // $('#tiger-btn').on('click', startAR('tiger'));
+    $('#syachi-btn').on('click', startAR('syachi'));
+    $('#penguin-btn').on('click', startAR('penguin'));
+    $('#tiger-btn').on('click', startAR('tiger'));
 
     setTimeout(
         setInterval(() => {
@@ -232,29 +231,28 @@ $(document).on("touchmove", "#touchDet",
 );
 
 let startAR = function (name) {
-    flag = true;
 
     testCube.setAttribute("visible", false);
 
-    // let syachi = document.getElementById("animal-syachi");
+    let syachi = document.getElementById("animal-syachi");
     let penguin = document.getElementById("animal-penguin");
-    // let tiger = document.getElementById("animal-tiger");
-    // let grass = document.getElementById("grass");
+    let tiger = document.getElementById("animal-tiger");
+    let grass = document.getElementById("grass");
 
-    // switch (name) {
-    //     case "syachi":
-    //         animal = syachi;
-    //         break;
-    //     case "penguin":
-    //         animal = penguin;
-    //         break;
-    //     case "tiger":
-    //         animal = tiger;
-    //         break;
-    //     default:
-    //         break;
-    // }
-    animal = penguin;
+    switch (name) {
+        case "syachi":
+            flag = true;
+            animal = syachi;
+            break;
+        case "penguin":
+            animal = penguin;
+            break;
+        case "tiger":
+            animal = tiger;
+            break;
+        default:
+            break;
+    }
     let position = testCube.getAttribute("position");
     isMove = true;
 
