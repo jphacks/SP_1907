@@ -57,17 +57,20 @@ request_permission = function () {
                 if (flag) {
                     $('.container').addClass('display-none')
                 }
-                setTimeout(() => {
-                    if (flag) {
-                        $('.container').removeClass('display-none')
-                    }
-                    setTimeout(() => {
-                        if (flag) {
-                            $('.container').addClass('display-none')
-                        }
-                    }, 2000);
-                }, 3000);
             }, 2000);
+
+            setTimeout(() => {
+                if (flag) {
+                    $('.container').removeClass('display-none')
+                }
+            }, 5000);
+
+            setTimeout(() => {
+                if (flag) {
+                    $('.container').addClass('display-none')
+                }
+            }, 2000);
+
         }, 7000)
         , 2000);
 }
