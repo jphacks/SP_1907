@@ -11,7 +11,7 @@ if (os === "iPhone" || os === "iPad" || os === "iPod") {
 
 // ARシーンを動的に出すためのhtmlテキスト（iOS対策）
 let innerHtml = '<a-scene id="touchDet" vr-mode-ui="enabled: false" arjs="debugUIEnabled:false;"><a-assets>'
-    + '<a-asset-item id="penguin" src="Models/Pinga.glb"></a-asset-item>'
+    + '<a-asset-item id="penguin" src="Models/Pingin.glb"></a-asset-item>'
     + '<a-asset-item id="syachi" src="Models/syachi.glb"></a-asset-item>'
     + '<a-asset-item id="tiger" src="Models/Tiger.glb"></a-asset-item>'
     + '<a-asset-item id="grass" src="Models/Grass3.glb"></a-asset-item>'
