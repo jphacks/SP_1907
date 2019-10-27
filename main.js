@@ -91,7 +91,7 @@ request_permission = function () {
     tiger.addEventListener('animation-loop', function () {
 
         grass.setAttribute('visible', false);
-        setInterval(() => {
+        setTimeout(() => {
             if(!isGrass){
                 return;
             }
@@ -221,7 +221,7 @@ $(document).on("touchmove", "#touchDet",
 let showWater = function () {
 
     $('.container').addClass('display-none');
-    setInterval(() => {
+    setTimeout(() => {
         if(!isWater){
             return;
         }
