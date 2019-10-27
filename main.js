@@ -50,11 +50,26 @@ request_permission = function () {
     )
     setTimeout(
         setInterval(() => {
-            if(flag){
-                $('.container').toggleClass('display-none')
+            if (flag) {
+                $('.container').removeClass('display-none')
             }
-        }, 3500)
-    ,5000);
+            setTimeout(() => {
+                if (flag) {
+                    $('.container').addClass('display-none')
+                }
+                setTimeout(() => {
+                    if (flag) {
+                        $('.container').removeClass('display-none')
+                    }
+                    setTimeout(() => {
+                        if (flag) {
+                            $('.container').addClass('display-none')
+                        }
+                    }, 2000);
+                }, 3000);
+            }, 2000);
+        }, 7000)
+        , 2000);
 }
 
 let flag = false;
@@ -205,10 +220,10 @@ $(document).on("touchmove", "#touchDet",
                 baseCubeZ = cubeScale.z;
 
             }
-        }else if(touches.length == 1){
+        } else if (touches.length == 1) {
             var x = touches[0].pageX;
             var y = touches[0].pageY;
-            
+
             cubePosition.y += y;
 
         }
