@@ -53,6 +53,7 @@ request_permission = function () {
         + '<button id="syachi-btn" class="btn-primary">シャチ</button>'
         + '<button id="penguin-btn" class="btn-primary">ペンギン</button>'
         + '<button id="tiger-btn" class="btn-primary">トラ</button>'
+        + '<button id="tiger-btn" class="btn-primary" onclick="startAR()">MoveStart</button>'
         + '</span>'
         + '</div>'
         + '</div>'
