@@ -187,7 +187,7 @@ $(document).on("touchmove", "#touchDet",
 
 let startAR = function(){
     isMove = true;
-    $('#touchDet').append($('<a-entity animation-mixer>'),{
+    $('#touchDet').append($('<a-entity animation-mixer>',{
         'id' : 'animal',
         'gltf-model' : "#penguin",
         // 'animation-mixer',
@@ -195,6 +195,6 @@ let startAR = function(){
         'rotation' : '0 0 0',
         'scale' : cubeScale,
         'visible' : 'true'
-    });
+    }));
     // '<a-entity id="animal" gltf-model="#penguin" animation-mixer position="0 0 2" rotation="0 0 0" scale="1 1 1" visible="true"></a-entity>')
 }
