@@ -188,11 +188,12 @@ $(document).on("touchmove", "#touchDet",
 );
 
 let startAR = function(){
+    let animal = document.getElementById("animal");
     let position = testCube.getAttribute("position");
     isMove = true;
 
-    $('#animal').setAttribute('position', `${position.x} ${position.y} ${position.z}`);
-    $('#animal').setAttribute('scale', `${cubeScale.x} ${cubeScale.y} ${cubeScale.z}`);
-    $('#animal').setAttribute('visible', true);
+    animal.setAttribute('position', `${position.x} ${position.y} ${position.z}`);
+    animal.setAttribute('scale', `${cubeScale.x} ${cubeScale.y} ${cubeScale.z}`);
+    animal.setAttribute('visible', true);
     // '<a-entity id="animal" gltf-model="#penguin" animation-mixer position="0 0 2" rotation="0 0 0" scale="1 1 1" visible="true"></a-entity>')
 }
