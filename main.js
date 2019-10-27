@@ -2,8 +2,10 @@ let innerHtml = '<a-scene id="touchDet" arjs="debugUIEnabled:false;"><a-assets>'
     + '<a-asset-item id="penguin" src="Models/Pinga.glb"></a-asset-item>'
     + '<a-asset-item id="syachi" src="Models/syachi.glb"></a-asset-item>'
     +'</a-assets>'
-    + '<a-entity id="animal" gltf-model="#penguin" animation-mixer position="0 0 2" rotation="0 0 0"'
-    + 'scale="1 1 1" visible="true"></a-entity>'
+    // + '<a-entity class="animal" gltf-model="#penguin" animation-mixer position="0 0 2" rotation="0 0 0"'
+    // + 'scale="1 1 1" visible="false"></a-entity>'
+    + '<a-entity class="animal" gltf-model="#syachi" animation-mixer position="0 0 2" rotation="0 0 0"'
+    + 'scale="1 1 1" visible="false"></a-entity>'
     + '<a-entity id="camera" camera position="0 0 0" look-controls></a-entity>'
     + '<a-box id="cube" scale="1 1 1" position="0 0 -3" color="red"></a-box>'
     + '</a-scene>';
@@ -188,14 +190,9 @@ $(document).on("touchmove", "#touchDet",
 let startAR = function(){
     let position = testCube.getAttribute("position");
     isMove = true;
-    $('#touchDet').append($(`<a-entity animation-mixer gltf-model : "#penguin" position="${position.x} ${position.y} ${position.z}" rotation="0 0 0" scale="${cubeScale.x} ${cubeScale.y} ${cubeScale.z} visible="true">`,{
-        // id : 'animal',
-        // gltf-model : "#penguin",
-        // 'animation-mixer',
-        // position : testCube.getAttribute("position"),
-        // rotation : '0 0 0',
-        // scale : cubeScale,
-        // visible : 'true'
-    }));
+
+    $('#animal').setAttribute('position', `${position.x} ${position.y} ${position.z}`);
+    $('#animal').setAttribute('scale', `${cubeScale.x} ${cubeScale.y} ${cubeScale.z}`);
+    $('#animal').setAttribute('visible', true);
     // '<a-entity id="animal" gltf-model="#penguin" animation-mixer position="0 0 2" rotation="0 0 0" scale="1 1 1" visible="true"></a-entity>')
 }
