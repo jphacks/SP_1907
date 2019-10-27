@@ -1,7 +1,7 @@
 let innerHtml = '<a-scene id="touchDet" arjs="debugUIEnabled:false;"><a-assets>'
     + '<a-asset-item id="penguin" src="Models/Pinga.glb"></a-asset-item>'
     + '<a-asset-item id="syachi" src="Models/syachi.glb"></a-asset-item>'
-    +'</a-assets>'
+    + '</a-assets>'
     // + '<a-entity id="animal" gltf-model="#penguin" animation-mixer position="0 0 2" rotation="0 0 0"'
     // + 'scale="1 1 1" visible="false"></a-entity>'
     + '<a-entity id="animal" gltf-model="#syachi" animation-mixer position="0 0 2" rotation="0 0 0"'
@@ -39,7 +39,14 @@ request_permission = function () {
     }
     // $("#container").html(innerHtml);
     $("#ar-container").html(innerHtml);
-
+    $('body').append(
+        '<div style="position: fixed; bottom: 10px; width:100%; text-align: center; z-index: 1;color: grey;">'
+        + '<div'
+        + 'style="color: rgba(0, 0, 0, 0.9); background-color: rgba(127, 127, 127, 0.5); display: inline-block; padding: 0.5em; margin: 0.5em; text-align: left;">'
+        + '<span style="display: block;"><button class="btn-primary" onclick="startAR()">MoveStart</button></span>'
+        + '</div>'
+        + '</div>'
+    )
 }
 
 let flag = false;
@@ -108,13 +115,15 @@ window.addEventListener("devicemotion",
 
         // position.x += 10 * -speed[0];
         // position.y += 10 * speed[1];
-        position.x += Math.cos(rotation.y * (Math.PI / 180)) * 10 * speed[2];
-        position.y += 0;
-        position.z += Math.sin(rotation.y * (Math.PI / 180)) * 10 * speed[2];
         // position.z += 10 * -speed[2].toFixed(1);
         // position.z += difference[2];
 
-        $('#pos').text(`position = x:${position.x.toFixed(2)} y:${position.y.toFixed(2)} z:${position.z.toFixed(2)}`);
+        // 移動
+        // position.x += Math.cos(rotation.y * (Math.PI / 180)) * 10 * speed[2];
+        // position.y += 0;
+        // position.z += Math.sin(rotation.y * (Math.PI / 180)) * 10 * speed[2];
+
+        // $('#pos').text(`position = x:${position.x.toFixed(2)} y:${position.y.toFixed(2)} z:${position.z.toFixed(2)}`);
 
         // rotation.x = rotx;
         // rotation.y = roty;
@@ -191,7 +200,7 @@ $(document).on("touchmove", "#touchDet",
     }
 );
 
-let startAR = function(){
+let startAR = function () {
     testCube.setAttribute("visible", false)
     let animal = document.getElementById("animal");
     let position = testCube.getAttribute("position");
