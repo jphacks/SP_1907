@@ -133,17 +133,19 @@ window.addEventListener("devicemotion",
 //     camera.setAttribute('position', position);
 
 // }
+    // base
+let beseDistance = 0;
+let baseCubeX = 0;
+let baseCubeY = 0;
 
+let timeoutId;
 // 平面規定処理--------------
 $("#touchDet").ready(function (e) {
     touchDetector = document.getElementById('touchDet');
 
     testCube = document.getElementById('cube');
     cubeScale = testCube.getAttribute('scale');
-    // base
-    beseDistance = 0;
-    baseCubeX = 0;
-    baseCubeY = 0;
+
 });
 
 $(document).on("touchmove", "#touchDet",
@@ -159,9 +161,7 @@ $(document).on("touchmove", "#touchDet",
 
             var distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 
-            if(!timeoutId){
-                clearTimeout(timeoutId);
-            }
+            clearTimeout(timeoutId);
 
             if (beseDistance && baseCubeX && baseCubeY) {
                 var scale = distance / beseDistance;
