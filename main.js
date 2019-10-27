@@ -186,15 +186,16 @@ $(document).on("touchmove", "#touchDet",
 );
 
 let startAR = function(){
+    let position = testCube.getAttribute("position");
     isMove = true;
-    $('#touchDet').append($('<a-entity animation-mixer gltf-model : "#penguin">',{
-        id : 'animal',
+    $('#touchDet').append($(`<a-entity animation-mixer gltf-model : "#penguin" position="${position.x} ${position.y} ${position.z}" rotation="0 0 0" scale="${cubeScale.x} ${cubeScale.y} ${cubeScale.z} visible="true">`,{
+        // id : 'animal',
         // gltf-model : "#penguin",
         // 'animation-mixer',
-        position : testCube.getAttribute("position"),
-        rotation : '0 0 0',
-        scale : cubeScale,
-        visible : 'true'
+        // position : testCube.getAttribute("position"),
+        // rotation : '0 0 0',
+        // scale : cubeScale,
+        // visible : 'true'
     }));
     // '<a-entity id="animal" gltf-model="#penguin" animation-mixer position="0 0 2" rotation="0 0 0" scale="1 1 1" visible="true"></a-entity>')
 }
