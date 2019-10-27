@@ -28,6 +28,9 @@ let innerHtml = '<a-scene id="touchDet" arjs="debugUIEnabled:false;"><a-assets>'
     + '<a-box id="cube" scale="1 1 1" position="0 0 -3" color="red"></a-box>'
     + '</a-scene>';
 
+// 画像のプリロード
+$('<img src="img/caution.png">');
+
 // iOSだった時にモーション取得するための関数
 request_permission = function () {
     if (
@@ -135,8 +138,8 @@ let baseCubeX = 0;
 let baseCubeY = 0;
 let baseCubeZ = 0;
 
-let cubeScale = {x:1, y:1, z:1};
-let cubePosition = {x:0, y:0, z:-3};
+let cubeScale = { x: 1, y: 1, z: 1 };
+let cubePosition = { x: 0, y: 0, z: -3 };
 
 let timeoutId;
 // 平面規定処理--------------
@@ -225,7 +228,7 @@ let startAR = function (name) {
             animal.addEventListener("animation-loop", function () {
                 grass.setAttribute('visible', false);
                 setTimeout(() => {
-                    grass.setAttribute('visible',true);
+                    grass.setAttribute('visible', true);
                 }, 2600);
             });
             break;
@@ -238,3 +241,13 @@ let startAR = function (name) {
     animal.setAttribute('scale', `${cubeScale.x * modifyScale} ${cubeScale.y * modifyScale} ${cubeScale.z * modifyScale}`);
     animal.setAttribute('visible', true);
 }
+
+$(window).on('load orientationchange resize', function () {
+    if (Math.abs(window.orientation) === 90) {
+        // 横向きになったときの処理
+        $('<img src="img/caution.png">').show();
+    } else {
+        // 縦向きになったときの処理
+        $('<img src="img/caution.png">').hide();
+    }
+});
