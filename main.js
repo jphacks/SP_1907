@@ -208,7 +208,7 @@ $(document).on("touchmove", "#touchDet",
             var x = touches[0].pageX;
             var y = touches[0].pageY;
             
-            position.y += y;
+            cubePosition.y += y;
 
         }
     }
