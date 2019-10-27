@@ -167,6 +167,7 @@ $(document).on("touchmove", "#touchDet",
 
         testCube = document.getElementById('cube');
         cubeScale = testCube.getAttribute('scale');
+        cubePosition = testCube.getAttribute('position');
         var touches = event.changedTouches;
 
         if (touches.length > 1) {
@@ -203,6 +204,12 @@ $(document).on("touchmove", "#touchDet",
                 baseCubeZ = cubeScale.z;
 
             }
+        }else if(touches.length == 1){
+            var x = touches[0].pageX;
+            var y = touches[0].pageY;
+            
+            position.y += y;
+
         }
     }
 );
