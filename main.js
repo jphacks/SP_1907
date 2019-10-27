@@ -58,13 +58,13 @@ request_permission = function () {
         + '</div>'
         + '</div>'
     )
-    $('#syachi-btn').on('click', function(){
+    $('#syachi-btn').on('click', function () {
         startAR('syachi');
     });
-    $('#penguin-btn').on('click',function(){
+    $('#penguin-btn').on('click', function () {
         startAR('penguin');
     });
-    $('#tiger-btn').on('click',function(){
+    $('#tiger-btn').on('click', function () {
         startAR('tiger');
     });
 
@@ -238,13 +238,6 @@ $(document).on("touchmove", "#touchDet",
 );
 
 let startAR = function (name) {
-
-    if(animal){
-        animal.setAttribute('visible', false);
-    }
-
-    animal.setAttribute('visible', true);
-
     testCube.setAttribute("visible", false);
 
     let syachi = document.getElementById("animal-syachi");
@@ -254,14 +247,17 @@ let startAR = function (name) {
 
     switch (name) {
         case "syachi":
+            animal.setAttribute('visible', false);
             flag = true;
             animal = syachi;
             break;
         case "penguin":
+            animal.setAttribute('visible', false);
             animal = penguin;
             break;
         case "tiger":
             grass.setAttribute('visible', false);
+            animal.setAttribute('visible', false);
             animal = tiger;
             break;
         default:
