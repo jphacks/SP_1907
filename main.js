@@ -50,13 +50,17 @@ request_permission = function () {
         + '<div'
         + ' style="color: rgba(0, 0, 0, 0.9); background-color: rgba(127, 127, 127, 0.5); display: inline-block; padding: 0.5em; margin: 0.5em; text-align: left;">'
         + '<span style="display: block;">'
-        + '<button class="btn-primary" onclick="startAR("syachi")">シャチ</button>'
-        + '<button class="btn-primary" onclick="startAR("penguin")">ペンギン</button>'
-        + '<button class="btn-primary" onclick="startAR("tiger")">トラ</button>'
+        + '<button id="syachi-btn" class="btn-primary">シャチ</button>'
+        + '<button id="penguin-btn" class="btn-primary">ペンギン</button>'
+        + '<button id="tiger-btn" class="btn-primary">トラ</button>'
         + '</span>'
         + '</div>'
         + '</div>'
     )
+    $('#syachi-btn').on('click', startAR('syachi'));
+    $('#penguin-btn').on('click', startAR('penguin'));
+    $('#tiger-btn').on('click', startAR('tiger'));
+
     setTimeout(
         setInterval(() => {
             if (flag) {
