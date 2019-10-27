@@ -42,7 +42,7 @@ request_permission = function () {
     $('body').append(
         '<div style="position: fixed; bottom: 10px; width:100%; text-align: center; z-index: 1;color: grey;">'
         + '<div'
-        + 'style="color: rgba(0, 0, 0, 0.9); background-color: rgba(127, 127, 127, 0.5); display: inline-block; padding: 0.5em; margin: 0.5em; text-align: left;">'
+        + ' style="color: rgba(0, 0, 0, 0.9); background-color: rgba(127, 127, 127, 0.5); display: inline-block; padding: 0.5em; margin: 0.5em; text-align: left;">'
         + '<span style="display: block;"><button class="btn-primary" onclick="startAR()">MoveStart</button></span>'
         + '</div>'
         + '</div>'
