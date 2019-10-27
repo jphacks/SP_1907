@@ -10,7 +10,7 @@ if (os === "iPhone" || os === "iPad" || os === "iPod") {
 }
 
 // ARシーンを動的に出すためのhtmlテキスト（iOS対策）
-let innerHtml = '<a-scene id="touchDet" arjs="debugUIEnabled:false;"><a-assets>'
+let innerHtml = '<a-scene id="touchDet" vr-mode-ui="enabled: false" arjs="debugUIEnabled:false;"><a-assets>'
     + '<a-asset-item id="penguin" src="Models/Pinga.glb"></a-asset-item>'
     + '<a-asset-item id="syachi" src="Models/syachi.glb"></a-asset-item>'
     + '<a-asset-item id="tiger" src="Models/Tiger.glb"></a-asset-item>'
@@ -49,7 +49,7 @@ request_permission = function () {
         DeviceOrientationEvent.requestPermission();
     }
     // ar-containerにA-frameのhtml表示
-    $("#ar-container").html(innerHtml);
+    $('#ar-container').html(innerHtml);
     // 動物ボタンの表示
     $('body').append(
         '<div style="position: fixed; bottom: 10px; width:100%; text-align: center; z-index: 1;color: grey;">'
@@ -78,7 +78,7 @@ request_permission = function () {
 let isMove = false;
 
 
-window.addEventListener("devicemotion",
+window.addEventListener('devicemotion',
     // イベント発生
     function () {
         if (document.getElementById('camera') == null || !isMove) {
@@ -201,32 +201,32 @@ let showWater = function () {
 
 
 let startAR = function (name) {
-    cube.setAttribute("visible", false);
-    $(".btn-primary").addClass("display-none");
+    cube.setAttribute('visible', false);
+    $('.btn-primary').addClass('display-none');
 
-    let syachi = document.getElementById("animal-syachi");
-    let penguin = document.getElementById("animal-penguin");
-    let tiger = document.getElementById("animal-tiger");
-    let grass = document.getElementById("obj-grass");
+    let syachi = document.getElementById('animal-syachi');
+    let penguin = document.getElementById('animal-penguin');
+    let tiger = document.getElementById('animal-tiger');
+    let grass = document.getElementById('obj-grass');
 
     let modifyScale = 0;
 
     switch (name) {
-        case "syachi":
+        case 'syachi':
             animal = syachi;
             modifyScale = 0.1;
-            animal.addEventListener("animation-loop", function () {
+            animal.addEventListener('animation-loop', function () {
                 showWater();
             });
             break;
-        case "penguin":
+        case 'penguin':
             animal = penguin;
             modifyScale = 0.1;
             break;
-        case "tiger":
+        case 'tiger':
             animal = tiger;
             modifyScale = 1;
-            animal.addEventListener("animation-loop", function () {
+            animal.addEventListener('animation-loop', function () {
                 grass.setAttribute('visible', false);
                 setTimeout(() => {
                     grass.setAttribute('visible', true);
