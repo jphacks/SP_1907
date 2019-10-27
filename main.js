@@ -34,7 +34,7 @@ request_permission = function () {
         DeviceOrientationEvent.requestPermission();
     }
     // $("#container").html(innerHtml);
-    $("body").html(innerHtml);
+    $("#ar-container").html(innerHtml);
 
 }
 
