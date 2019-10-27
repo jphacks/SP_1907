@@ -1,7 +1,9 @@
 let innerHtml = '<a-scene id="touchDet" arjs="debugUIEnabled:false;"><a-assets>'
-    + '<a-asset-item id="model" src=""></a-asset-item></a-assets>'
-    + '<a-entity id="animal" gltf-model="#model" animation-mixer position="0 0 2" rotation="0 0 0"'
-    + 'scale="1 1 1" visible="true"></a-entity>'
+    + '<a-asset-item id="penguin" src="Models/Pinga.glb"></a-asset-item>'
+    + '<a-asset-item id="syachi" src="Models/syachi.glb"></a-asset-item>'
+    +'</a-assets>'
+    // + '<a-entity id="animal" gltf-model="#penguin" animation-mixer position="0 0 2" rotation="0 0 0"'
+    // + 'scale="1 1 1" visible="true"></a-entity>'
     + '<a-entity id="camera" camera position="0 0 0" look-controls></a-entity>'
     + '<a-box id="cube" scale="1 1 1" position="0 0 -3" color="red"></a-box>'
     + '</a-scene>';
@@ -182,3 +184,17 @@ $(document).on("touchmove", "#touchDet",
         }
     }
 );
+
+let startAR = function(){
+    isMove = true;
+    $('#touchDet').append($('a-entity').attr({
+        'id' : 'animal',
+        'gltf-model' : "#penguin",
+        'animation-mixer',
+        'position' : testCube.getAttribute("position"),
+        'rotation' : '0 0 0',
+        'scale' : cubeScale,
+        'visible' : 'true'
+    }));
+    // '<a-entity id="animal" gltf-model="#penguin" animation-mixer position="0 0 2" rotation="0 0 0" scale="1 1 1" visible="true"></a-entity>')
+}
