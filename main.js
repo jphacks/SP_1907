@@ -1,3 +1,15 @@
+// OS名取得
+let os = navigator.platform;
+// デバイスによって加速度の軸が違うので、それの調整用
+let osNum;
+// OS判定
+if (os === "iPhone" || os === "iPad" || os === "iPod") {
+    osNum = -1;
+} else {
+    osNum = 1;
+}
+
+// ARシーンを動的に出すためのhtmlテキスト（iOS対策）
 let innerHtml = '<a-scene id="touchDet" arjs="debugUIEnabled:false;"><a-assets>'
     + '<a-asset-item id="penguin" src="Models/Pinga.glb"></a-asset-item>'
     + '<a-asset-item id="syachi" src="Models/syachi.glb"></a-asset-item>'
@@ -16,18 +28,7 @@ let innerHtml = '<a-scene id="touchDet" arjs="debugUIEnabled:false;"><a-assets>'
     + '<a-box id="cube" scale="1 1 1" position="0 0 -3" color="red"></a-box>'
     + '</a-scene>';
 
-
-let os = navigator.platform;                // OS名の取得
-let osNum;
-if (os === "iPhone" || os === "iPad" || os === "iPod") {     // iOSなら
-    osNum = -1;
-} else {
-    osNum = 1;
-}
-
-
-// $(window).click(request_permission());
-
+// iOSだった時にモーション取得するための関数
 request_permission = function () {
     if (
         DeviceMotionEvent &&
@@ -43,8 +44,9 @@ request_permission = function () {
     ) {
         DeviceOrientationEvent.requestPermission();
     }
-    // $("#container").html(innerHtml);
+    // ar-containerにA-frameのhtml表示
     $("#ar-container").html(innerHtml);
+    // 動物ボタンの表示
     $('body').append(
         '<div style="position: fixed; bottom: 10px; width:100%; text-align: center; z-index: 1;color: grey;">'
         + '<div'
@@ -57,6 +59,7 @@ request_permission = function () {
         + '</div>'
         + '</div>'
     )
+    // 各ボタンに
     $('#syachi-btn').on('click', function () {
         startAR('syachi');
     });
@@ -66,17 +69,7 @@ request_permission = function () {
     $('#tiger-btn').on('click', function () {
         startAR('tiger');
     });
-
-    setTimeout(
-        setInterval(() => {
-            if (flag) {
-                $('.container').toggleClass('display-none')
-            }
-        }, 3500)
-        , 5000);
 }
-
-let flag = false;
 
 let isMove = false;
 
@@ -131,45 +124,12 @@ window.addEventListener("devicemotion",
             oldSpeed = speed[i];
 
         }
-        // $('#speed').html(`<p>speed</p><p>${speed[0].toFixed(2)}</p><p>${speed[1].toFixed(2)}</p><p>${speed[2].toFixed(2)}</p>`);
-
-        // var rotz = event.rotationRate.alpha; //z方向
-        // var rotx = event.rotationRate.beta; //x方向
-        // var roty = event.rotationRate.gamma; // y方向
-
         var position = camera.getAttribute('position');
         var rotation = camera.getAttribute('rotation');
 
-        // position.x += 10 * -speed[0];
-        // position.y += 10 * speed[1];
-        // position.z += 10 * -speed[2].toFixed(1);
-        // position.z += difference[2];
-
-        // 移動
-        // position.x += Math.cos(rotation.y * (Math.PI / 180)) * 10 * speed[2];
-        // position.y += 0;
-        // position.z += Math.sin(rotation.y * (Math.PI / 180)) * 10 * speed[2];
-
-        // $('#pos').text(`position = x:${position.x.toFixed(2)} y:${position.y.toFixed(2)} z:${position.z.toFixed(2)}`);
-
-        // rotation.x = rotx;
-        // rotation.y = roty;
-        // rotation.z = rotz;
-
         camera.setAttribute('position', position);
-        // camera.setAttribute('rotation', rotation);
     });
 
-// let test = function (posx, posy) {
-//     var camera = document.getElementById('camera');
-//     var position = camera.getAttribute('position');
-
-//     position.x += posx;
-//     position.z += posy;
-//     camera.setAttribute('position', position);
-
-// }
-// base
 let beseDistance = 0;
 let baseCubeX = 0;
 let baseCubeY = 0;
@@ -177,9 +137,6 @@ let baseCubeZ = 0;
 
 let timeoutId;
 // 平面規定処理--------------
-// $(document).on('ready', '#touchDet', function (e) {
-
-// });
 
 $(document).on("touchmove", "#touchDet",
     function (event) {
@@ -225,16 +182,16 @@ $(document).on("touchmove", "#touchDet",
 
             }
         }
-        // else
-        //  if (touches.length == 1) {
-        //     var x = touches[0].pageX;
-        //     var y = touches[0].pageY;
-
-        //     // cubePosition.y += y;
-
-        // }
     }
 );
+
+let showWater = function(){
+    $('.container').removeclass('display-none');
+    setTimeout(() => {
+    $('.container').addClass('display-none');
+        
+    }, 2000);
+}
 
 let startAR = function (name) {
     testCube.setAttribute("visible", false);
@@ -251,16 +208,17 @@ let startAR = function (name) {
 
     switch (name) {
         case "syachi":
-            flag = true;
             animal = syachi;
             modifyScale = 0.1;
+            animal.addEventListener("animation-loop",function(){
+                showWater();
+            });
             break;
         case "penguin":
             animal = penguin;
             modifyScale = 0.1;
             break;
         case "tiger":
-            // grass.setAttribute('visible', true);
             animal = tiger;
             modifyScale = 1;
             break;
@@ -269,9 +227,7 @@ let startAR = function (name) {
     }
     isMove = true;
 
-    // animal = tiger;
     animal.setAttribute('position', `${position.x} ${position.y} ${position.z}`);
     animal.setAttribute('scale', `${cubeScale.x * modifyScale} ${cubeScale.y * modifyScale} ${cubeScale.z * modifyScale}`);
     animal.setAttribute('visible', true);
-    // '<a-entity id="animal" gltf-model="#penguin" animation-mixer position="0 0 2" rotation="0 0 0" scale="1 1 1" visible="true"></a-entity>')
 }
