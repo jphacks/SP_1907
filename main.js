@@ -197,7 +197,7 @@ let startAR = function(){
     isMove = true;
 
     animal.setAttribute('position', `${position.x} ${position.y} ${position.z}`);
-    animal.setAttribute('scale', `${cubeScale.x} ${cubeScale.y} ${cubeScale.z}`);
+    animal.setAttribute('scale', `${cubeScale.x * 0.1} ${cubeScale.y * 0.1} ${cubeScale.z * 0.1}`);
     animal.setAttribute('visible', true);
     // '<a-entity id="animal" gltf-model="#penguin" animation-mixer position="0 0 2" rotation="0 0 0" scale="1 1 1" visible="true"></a-entity>')
 }
