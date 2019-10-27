@@ -222,10 +222,10 @@ let startAR = function (name) {
             animal = tiger;
             modifyScale = 1;
             animal.addEventListener("animation-loop", function () {
-                grass.setAttribute('visible',true);
+                grass.setAttribute('visible', false);
                 setTimeout(() => {
-                    grass.setAttribute('visible', false);
-                }, 1000);
+                    grass.setAttribute('visible',true);
+                }, 3000);
             });
             break;
         default:
