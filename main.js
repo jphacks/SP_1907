@@ -144,8 +144,6 @@ $("#touchDet").ready(function (e) {
     beseDistance = 0;
     baseCubeX = 0;
     baseCubeY = 0;
-
-    timeoutId = null;
 });
 
 $(document).on("touchmove", "#touchDet",
@@ -161,7 +159,9 @@ $(document).on("touchmove", "#touchDet",
 
             var distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 
-            clearTimeout(timeoutId);
+            if(!timeoutId){
+                clearTimeout(timeoutId);
+            }
 
             if (beseDistance && baseCubeX && baseCubeY) {
                 var scale = distance / beseDistance;
