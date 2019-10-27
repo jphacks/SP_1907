@@ -89,11 +89,12 @@ request_permission = function () {
     });
 
     tiger.addEventListener('animation-loop', function () {
-        if(!isGrass){
-            return;
-        }
+
         grass.setAttribute('visible', false);
-        setTimeout(() => {
+        setInterval(() => {
+            if(!isGrass){
+                return;
+            }
             grass.setAttribute('visible', true);
         }, 2600);
     });
@@ -218,11 +219,12 @@ $(document).on("touchmove", "#touchDet",
 );
 
 let showWater = function () {
-    if(!isWater){
-        return;
-    }
+
     $('.container').addClass('display-none');
-    setTimeout(() => {
+    setInterval(() => {
+        if(!isWater){
+            return;
+        }
         $('.container').removeClass('display-none');
     }, 5000);
 }
