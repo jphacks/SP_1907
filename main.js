@@ -58,9 +58,6 @@ request_permission = function () {
         + '</div>'
         + '</div>'
     )
-    $(document).on('click','#syachi-btn', startAR('syachi'));
-    $(document).on('click', '#penguin-btn',startAR('penguin'));
-    $(document).on('click','#tiger-btn'. startAR('tiger'));
 
     setTimeout(
         setInterval(() => {
@@ -70,6 +67,9 @@ request_permission = function () {
         }, 3500)
         , 5000);
 }
+$(document).on('click', '#syachi-btn', startAR('syachi'));
+$(document).on('click', '#penguin-btn', startAR('penguin'));
+$(document).on('click', '#tiger-btn'.startAR('tiger'));
 
 let flag = false;
 
