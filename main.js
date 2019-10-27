@@ -245,17 +245,22 @@ let startAR = function (name) {
     let tiger = document.getElementById("animal-tiger");
     let grass = document.getElementById("obj-grass");
 
+    let modifyScale = 0;
+
     switch (name) {
         case "syachi":
             flag = true;
             animal = syachi;
+            modifyScale = 10;
             break;
         case "penguin":
             animal = penguin;
+            modifyScale = 0.1;
             break;
         case "tiger":
             // grass.setAttribute('visible', true);
             animal = tiger;
+            modifyScale = 1;
             break;
         default:
             break;
@@ -265,7 +270,7 @@ let startAR = function (name) {
 
     // animal = tiger;
     animal.setAttribute('position', `${position.x} ${position.y} ${position.z}`);
-    animal.setAttribute('scale', `${cubeScale.x * 0.1} ${cubeScale.y * 0.1} ${cubeScale.z * 0.1}`);
+    animal.setAttribute('scale', `${cubeScale.x * modifyScale} ${cubeScale.y * modifyScale} ${cubeScale.z * modifyScale}`);
     animal.setAttribute('visible', true);
     // '<a-entity id="animal" gltf-model="#penguin" animation-mixer position="0 0 2" rotation="0 0 0" scale="1 1 1" visible="true"></a-entity>')
 }
