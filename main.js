@@ -137,6 +137,7 @@ window.addEventListener("devicemotion",
 let beseDistance = 0;
 let baseCubeX = 0;
 let baseCubeY = 0;
+let baseCubeZ = 0;
 
 let timeoutId;
 // 平面規定処理--------------
@@ -163,24 +164,27 @@ $(document).on("touchmove", "#touchDet",
 
             clearTimeout(timeoutId);
 
-            if (beseDistance && baseCubeX && baseCubeY) {
+            if (beseDistance && baseCubeX && baseCubeY && baseCubeZ) {
                 var scale = distance / beseDistance;
 
                 if (scale && scale != Infinity) {
                     cubeScale.x = baseCubeX * scale;
                     cubeScale.y = baseCubeY * scale;
+                    cubeScale.z = baseCubeZ * scale;
                 }
 
                 timeoutId = setTimeout(function () {
                     beseDistance = 0;
                     baseCubeX = 0;
                     baseCubeY = 0;
+                    baseCubeZ = 0;
                 }, 100);
 
             } else {
                 beseDistance = distance;
                 baseCubeX = cubeScale.x;
                 baseCubeY = cubeScale.y;
+                baseCubeZ = cubeScale.z;
 
             }
         }
