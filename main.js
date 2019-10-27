@@ -133,14 +133,14 @@ window.addEventListener("devicemotion",
 //     camera.setAttribute('position', position);
 
 // }
-    // base
+// base
 let beseDistance = 0;
 let baseCubeX = 0;
 let baseCubeY = 0;
 
 let timeoutId;
 // 平面規定処理--------------
-$("#touchDet").ready(function (e) {
+$(document).on('ready', '#touchDet', function (e) {
     touchDetector = document.getElementById('touchDet');
 
     testCube = document.getElementById('cube');
