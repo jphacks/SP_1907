@@ -189,9 +189,9 @@ let showWater = function () {
     $('.container').addClass('display-none');
     setTimeout(() => {
         $('.container').removeClass('display-none');
-
     }, 5000);
 }
+
 
 let startAR = function (name) {
     testCube.setAttribute("visible", false);
@@ -221,6 +221,12 @@ let startAR = function (name) {
         case "tiger":
             animal = tiger;
             modifyScale = 1;
+            animal.addEventListener("animation-loop", function () {
+                grass.setAttribute('visible',true);
+                setTimeout(() => {
+                    grass.setAttribute('visible', false);
+                }, 1000);
+            });
             break;
         default:
             break;
