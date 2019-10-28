@@ -11,9 +11,9 @@ if (os === "iPhone" || os === "iPad" || os === "iPod") {
 
 // ARシーンを動的に出すためのhtmlテキスト（iOS対策）
 let innerHtml = '<a-scene id="touchDet" vr-mode-ui="enabled: false" arjs="debugUIEnabled:false;"><a-assets>'
-+ '<a-asset-item id="syachi" src="Models/syachi.glb"></a-asset-item>'
-+ '<a-asset-item id="tiger" src="Models/Tiger.glb"></a-asset-item>'
-+ '<a-asset-item id="grass" src="Models/Grass3.glb"></a-asset-item>'
+    + '<a-asset-item id="syachi" src="Models/syachi.glb"></a-asset-item>'
+    + '<a-asset-item id="tiger" src="Models/Tiger.glb"></a-asset-item>'
+    + '<a-asset-item id="grass" src="Models/Grass3.glb"></a-asset-item>'
     + '<a-asset-item id="penguin" src="Models/Pengin.glb"></a-asset-item>'
     + '</a-assets>'
     + '<a-entity id="animal-penguin" gltf-model="#penguin" animation-mixer position="0 0 2" rotation="0 90 0"'
@@ -55,29 +55,7 @@ request_permission = function () {
     }
     // ar-containerにA-frameのhtml表示
     $('#ar-container').html(innerHtml);
-    // 動物ボタンの表示
-    $('body').append(
-        '<div style="position: fixed; bottom: 10px; width:100%; text-align: center; z-index: 1;color: grey;">'
-        + '<div'
-        + ' style="color: rgba(0, 0, 0, 0.9); background-color: rgba(127, 127, 127, 0.5); display: inline-block; padding: 0.5em; margin: 0.5em; text-align: left;">'
-        + '<span style="display: block;">'
-        + '<button id="syachi-btn" class="btn-primary"style="font-size:5vw;">シャチ</button>'
-        + '<button id="penguin-btn" class="btn-primary"style="font-size:5vw;">ペンギン</button>'
-        + '<button id="tiger-btn" class="btn-primary"style="font-size:5vw;">トラ</button>'
-        + '</span>'
-        + '</div>'
-        + '</div>'
-    )
-    // 各ボタンに
-    $('#syachi-btn').on('click', function () {
-        startAR('syachi');
-    });
-    $('#penguin-btn').on('click', function () {
-        startAR('penguin');
-    });
-    $('#tiger-btn').on('click', function () {
-        startAR('tiger');
-    });
+
 
     syachi = document.getElementById('animal-syachi');
     penguin = document.getElementById('animal-penguin');
@@ -92,13 +70,46 @@ request_permission = function () {
 
         grass.setAttribute('visible', false);
         setTimeout(() => {
-            if(!isGrass){
+            if (!isGrass) {
                 return;
             }
             grass.setAttribute('visible', true);
         }, 2600);
     });
+}
 
+let showAnimalButton = function () {
+    // シーンが表示されるまでボタン表示しない
+    let id = setInterval(() => {
+        if(!($('video').length)){
+            return;
+        }else{
+            clearInterval(id);
+        }
+        // 動物ボタンの表示
+        $('body').append(
+            '<div style="position: fixed; bottom: 10px; width:100%; text-align: center; z-index: 1;color: grey;">'
+            + '<div'
+            + ' style="color: rgba(0, 0, 0, 0.9); background-color: rgba(127, 127, 127, 0.5); display: inline-block; padding: 0.5em; margin: 0.5em; text-align: left;">'
+            + '<span style="display: block;">'
+            + '<button id="syachi-btn" class="btn-primary"style="font-size:5vw;">シャチ</button>'
+            + '<button id="penguin-btn" class="btn-primary"style="font-size:5vw;">ペンギン</button>'
+            + '<button id="tiger-btn" class="btn-primary"style="font-size:5vw;">トラ</button>'
+            + '</span>'
+            + '</div>'
+            + '</div>'
+        )
+        // 各ボタンに
+        $('#syachi-btn').on('click', function () {
+            startAR('syachi');
+        });
+        $('#penguin-btn').on('click', function () {
+            startAR('penguin');
+        });
+        $('#tiger-btn').on('click', function () {
+            startAR('tiger');
+        });
+    }, 1000);
 }
 
 let isMove = false;
@@ -222,9 +233,9 @@ let showWater = function () {
 
     $('.container').addClass('display-none');
     setTimeout(() => {
-            if(!isWater){
-        return;
-    }
+        if (!isWater) {
+            return;
+        }
         $('.container').removeClass('display-none');
     }, 5000);
 }
