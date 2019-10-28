@@ -16,11 +16,11 @@ let innerHtml = '<a-scene id="touchDet" vr-mode-ui="enabled: false" arjs="debugU
     + '<a-asset-item id="grass" src="Models/Grass3.glb"></a-asset-item>'
     + '<a-asset-item id="penguin" src="Models/Pengin.glb"></a-asset-item>'
     + '</a-assets>'
-    + '<a-entity id="animal-penguin" gltf-model="#penguin" animation-mixer position="0 0 2" rotation="0 90 0"'
+    + '<a-entity class="animal" id="animal-penguin" gltf-model="#penguin" animation-mixer position="0 0 2" rotation="0 90 0"'
     + 'scale="1 1 1" visible="false"></a-entity>'
-    + '<a-entity id="animal-syachi" gltf-model="#syachi" animation-mixer position="0 0 2" rotation="0 90 0"'
+    + '<a-entity class="animal" id="animal-syachi" gltf-model="#syachi" animation-mixer position="0 0 2" rotation="0 90 0"'
     + 'scale="1 1 1" visible="false"></a-entity>'
-    + '<a-entity id="animal-tiger" gltf-model="#tiger" animation-mixer position="0 0 2" rotation="0 0 0"'
+    + '<a-entity class="animal" id="animal-tiger" gltf-model="#tiger" animation-mixer position="0 0 2" rotation="0 0 0"'
     + 'scale="1 1 1" visible="false"></a-entity>'
     + '<a-entity id="obj-grass" gltf-model="#grass" animation-mixer position="0 0.35 -1" scale="1 1 1" rotation="0 0 0"'
     + 'scale="1 1 1" visible="false"></a-entity>'
@@ -30,11 +30,6 @@ let innerHtml = '<a-scene id="touchDet" vr-mode-ui="enabled: false" arjs="debugU
 
 // 画像のプリロード
 $('<img src="img/caution.png">');
-
-// 水しぶきを表示させるかどうか
-let isWater = false;
-// 割れた窓を表示させるか（トラのときのみ表示）
-let isGrass = false;
 
 // iOSだった時にモーション取得するための関数
 request_permission = function () {
@@ -57,34 +52,49 @@ request_permission = function () {
     $('#ar-container').html(innerHtml);
 
     showAnimalButton();
+    initAnimals();
 
-    syachi = document.getElementById('animal-syachi');
-    penguin = document.getElementById('animal-penguin');
-    tiger = document.getElementById('animal-tiger');
-    grass = document.getElementById('obj-grass');
+    // syachi = document.getElementById('animal-syachi');
+    // penguin = document.getElementById('animal-penguin');
+    // tiger = document.getElementById('animal-tiger');
+    // grass = document.getElementById('obj-grass');
 
-    syachi.addEventListener('animation-loop', function () {
-        showWater();
-    });
+    // syachi.addEventListener('animation-loop', function () {
+    //     showWater();
+    // });
 
-    tiger.addEventListener('animation-loop', function () {
+    // tiger.addEventListener('animation-loop', function () {
 
-        grass.setAttribute('visible', false);
-        setTimeout(() => {
-            if (!isGrass) {
-                return;
-            }
-            grass.setAttribute('visible', true);
-        }, 2600);
-    });
+    //     grass.setAttribute('visible', false);
+    //     setTimeout(() => {
+    //         if (!isGrass) {
+    //             return;
+    //         }
+    //         grass.setAttribute('visible', true);
+    //     }, 2600);
+    // });
 }
 
+/**
+ * 動物たちを最初は止めておく
+ */
+let initAnimals = function () {
+    let animalSet = document.getElementsByClassName("animal");
+    for (let i = 0; i < animalSet.length; i++) {
+        const element = animalSet[i];
+        element.setAttribute("animation-mixer", { timeScale: 0 })
+    }
+}
+
+/**
+ * 動物を表示させるボタンを表示させる
+ */
 let showAnimalButton = function () {
     // シーンが表示されるまでボタン表示しない
     let id = setInterval(() => {
-        if(!($('video').length)){
+        if (!($('video').length)) {
             return;
-        }else{
+        } else {
             clearInterval(id);
         }
         // 動物ボタンの表示
@@ -113,8 +123,8 @@ let showAnimalButton = function () {
     }, 1000);
 }
 
+// スマホの加速度を取得するか否か
 let isMove = false;
-
 
 window.addEventListener('devicemotion',
     // イベント発生
@@ -181,8 +191,8 @@ let cubeScale = { x: 1, y: 1, z: 1 };
 let cubePosition = { x: 0, y: 0, z: -3 };
 
 let timeoutId;
-// 平面規定処理--------------
 
+// 平面規定処理--------------
 $(document).on("touchmove", "#touchDet",
     function (event) {
         touchDetector = document.getElementById('touchDet');
@@ -230,18 +240,21 @@ $(document).on("touchmove", "#touchDet",
     }
 );
 
+/**
+ * シャチが飛び込んだ時に水しぶきを上げる
+ * 一定時間後に水しぶきを表示させる
+ */
 let showWater = function () {
-
     $('.container').addClass('display-none');
     setTimeout(() => {
-        if (!isWater) {
-            return;
-        }
         $('.container').removeClass('display-none');
     }, 5000);
 }
 
-
+/**
+ * 動物を表示させる。
+ * @param {string} name 表示する動物名 
+ */
 let startAR = function (name) {
     cube.setAttribute('visible', false);
     $('.btn-primary').addClass('display-none');
@@ -253,7 +266,12 @@ let startAR = function (name) {
         case 'syachi':
             animal = syachi;
             modifyScale = 0.1;
-            isWater = true;
+            // 最初の一回はボタン押下時に呼び出す
+            showWater();
+            // 以降はループごとに呼び出す
+            animal.addEventListener('animation-loop', function () {
+                showWater();
+            });
             break;
         case 'penguin':
             animal = penguin;
@@ -261,9 +279,19 @@ let startAR = function (name) {
             break;
         case 'tiger':
             animal = tiger;
-            isGrass = true;
             modifyScale = 1;
-            break;
+            // 最初の一回はボタン押下時に呼び出す
+            setTimeout(() => {
+                grass.setAttribute('visible', true);
+            }, 2600);
+            // 以降はループごとに呼び出す
+            tiger.addEventListener('animation-loop', function () {
+                grass.setAttribute('visible', false);
+                setTimeout(() => {
+                    grass.setAttribute('visible', true);
+                }, 2600);
+            });
+                break;
         default:
             break;
     }
@@ -271,6 +299,7 @@ let startAR = function (name) {
 
     animal.setAttribute('position', `${cubePosition.x} ${cubePosition.y} ${cubePosition.z}`);
     animal.setAttribute('scale', `${cubeScale.x * modifyScale} ${cubeScale.y * modifyScale} ${cubeScale.z * modifyScale}`);
+    animal.setAttribute('animation-mixer', { timeScale: 1 });
     animal.setAttribute('visible', true);
 }
 
