@@ -56,6 +56,7 @@ request_permission = function () {
     // ar-containerにA-frameのhtml表示
     $('#ar-container').html(innerHtml);
 
+    showAnimalButton();
 
     syachi = document.getElementById('animal-syachi');
     penguin = document.getElementById('animal-penguin');
