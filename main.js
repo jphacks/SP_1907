@@ -54,25 +54,6 @@ request_permission = function () {
     showAnimalButton();
     initAnimals();
 
-    // syachi = document.getElementById('animal-syachi');
-    // penguin = document.getElementById('animal-penguin');
-    // tiger = document.getElementById('animal-tiger');
-    // grass = document.getElementById('obj-grass');
-
-    // syachi.addEventListener('animation-loop', function () {
-    //     showWater();
-    // });
-
-    // tiger.addEventListener('animation-loop', function () {
-
-    //     grass.setAttribute('visible', false);
-    //     setTimeout(() => {
-    //         if (!isGrass) {
-    //             return;
-    //         }
-    //         grass.setAttribute('visible', true);
-    //     }, 2600);
-    // });
 }
 
 /**
