@@ -82,9 +82,9 @@ let initAnimals = function () {
     let animalSet = document.getElementsByClassName("animal");
     for (let i = 0; i < animalSet.length; i++) {
         const element = animalSet[i];
-        let data = JSON.parse(element.getAttribute('animation-mixer') || "null");
+        let data = element.getAttribute('animation-mixer');
         data.timeScale = 0;
-        element.setAttribute("animation-mixer", JSON.stringify(data));
+        element.setAttribute("animation-mixer", data);
     }
 }
 
@@ -307,9 +307,9 @@ let startAR = function (name) {
 
     animal.setAttribute('position', `${cubePosition.x} ${cubePosition.y} ${cubePosition.z}`);
     animal.setAttribute('scale', `${cubeScale.x * modifyScale} ${cubeScale.y * modifyScale} ${cubeScale.z * modifyScale}`);
-    let data = JSON.parse(animal.getAttribute('animation-mixer') || "null");
+    let data = animal.getAttribute('animation-mixer');
     data.timeScale = 1;
-    animal.setAttribute("animation-mixer", JSON.stringify(data));
+    animal.setAttribute("animation-mixer", data);
     animal.setAttribute('visible', true);
 }
 
