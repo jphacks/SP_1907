@@ -82,7 +82,7 @@ let initAnimals = function () {
     let animalSet = document.getElementsByClassName("animal");
     for (let i = 0; i < animalSet.length; i++) {
         const element = animalSet[i];
-        element.setAttribute("animation-mixer", { timeScale: 0 })
+        element.setAttribute("animation-mixer", {timeScale: 1});
     }
 }
 
@@ -299,7 +299,7 @@ let startAR = function (name) {
 
     animal.setAttribute('position', `${cubePosition.x} ${cubePosition.y} ${cubePosition.z}`);
     animal.setAttribute('scale', `${cubeScale.x * modifyScale} ${cubeScale.y * modifyScale} ${cubeScale.z * modifyScale}`);
-    animal.setAttribute('animation-mixer', { timeScale: 1 });
+    animal.setAttribute("animation-mixer", {timeScale: 1});
     animal.setAttribute('visible', true);
 }
 
