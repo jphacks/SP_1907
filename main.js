@@ -79,11 +79,13 @@ request_permission = function () {
  * 動物たちを最初は止めておく
  */
 let initAnimals = function () {
-    let animalSet = document.getElementsByClassName("animal");
-    for (let i = 0; i < animalSet.length; i++) {
-        const element = animalSet[i];
-        element.setAttribute("animation-mixer", {timeScale: 1});
-    }
+    // let animalSet = document.getElementsByClassName("animal");
+    // for (let i = 0; i < animalSet.length; i++) {
+    //     const element = animalSet[i];
+    //     element.setAttribute("animation-mixer", {timeScale: 1});
+    // }
+    let test = document.getElementById("animal-penguin");
+    test.setAttribute("animation-mixer", {timeScale: 0});
 }
 
 /**
