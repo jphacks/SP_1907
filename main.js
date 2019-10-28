@@ -258,6 +258,12 @@ let showWater = function () {
  * @param {string} name 表示する動物名 
  */
 let startAR = function (name) {
+    
+    syachi = document.getElementById('animal-syachi');
+    penguin = document.getElementById('animal-penguin');
+    tiger = document.getElementById('animal-tiger');
+    grass = document.getElementById('obj-grass');
+
     cube.setAttribute('visible', false);
     $('.btn-primary').addClass('display-none');
 
