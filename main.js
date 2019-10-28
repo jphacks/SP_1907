@@ -79,13 +79,13 @@ request_permission = function () {
  * 動物たちを最初は止めておく
  */
 let initAnimals = function () {
-    // let animalSet = document.getElementsByClassName("animal");
-    // for (let i = 0; i < animalSet.length; i++) {
-    //     const element = animalSet[i];
-    //     element.setAttribute("animation-mixer", {timeScale: 1});
-    // }
-    let test = document.getElementById("animal-penguin");
-    test.setAttribute("animation-mixer", {timeScale: 0});
+    let animalSet = document.getElementsByClassName("animal");
+    for (let i = 0; i < animalSet.length; i++) {
+        const element = animalSet[i];
+        let data = element.getAttribute('animation-mixer');
+        data.timeScale = 0;
+        element.setAttribute("animation-mixer", data);
+    }
 }
 
 /**
@@ -293,7 +293,7 @@ let startAR = function (name) {
                     grass.setAttribute('visible', true);
                 }, 2600);
             });
-                break;
+            break;
         default:
             break;
     }
@@ -301,7 +301,9 @@ let startAR = function (name) {
 
     animal.setAttribute('position', `${cubePosition.x} ${cubePosition.y} ${cubePosition.z}`);
     animal.setAttribute('scale', `${cubeScale.x * modifyScale} ${cubeScale.y * modifyScale} ${cubeScale.z * modifyScale}`);
-    animal.setAttribute("animation-mixer", {timeScale: 1});
+    let data = animal.getAttribute('animation-mixer');
+    data.timeScale = 1;
+    animal.setAttribute("animation-mixer", data);
     animal.setAttribute('visible', true);
 }
 
